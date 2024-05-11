@@ -1,6 +1,7 @@
 import React from 'react'
 import './Library.css'
 import { library, list, plus, search } from '../../assets'
+import PlaylistCard from '../PlaylistCard/PlaylistCard'
 
 function Library() {
     return (
@@ -25,7 +26,13 @@ function Library() {
             </div>
 
             <div className="fourth-child">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, eos?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, qui autem ullam quis quisquam delectus ab maiores dicta, est magni minus laudantium, commodi necessitatibus earum? Iure, atque. Saepe nobis inventore, accusantium repudiandae officiis esse totam commodi ullam dolorem ex veritatis hic a laborum itaque nesciunt voluptates voluptatem minima aliquid qui non possimus tempora incidunt! Obcaecati nesciunt ad eos eius vero, laboriosam dicta autem, ipsum maiores velit beatae sapiente quod aspernatur quam, ullam iusto perspiciatis quibusdam ducimus officia. Delectus a accusantium ex laudantium? Sequi, dolore. Doloremque recusandae facere necessitatibus aliquam maxime sequi minus sunt suscipit quam, est perferendis cupiditate molestiae similique!</p>
+                <PlaylistCard/>
+                <PlaylistCard/>
+                <PlaylistCard/>
+                <PlaylistCard/>
+                <PlaylistCard/>
+                <PlaylistCard/>
+                <PlaylistCard/>
             </div>
         </div>
     )

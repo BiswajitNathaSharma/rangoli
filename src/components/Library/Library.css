@@ -46,13 +46,17 @@ span{
 .fourth-child{
     overflow: auto;
     max-height: calc(100vh - 62vh);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 .fourth-child::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 
 .fourth-child::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    border-radius: 50px;
+    background: transparent;
 }
 
 .fourth-child::-webkit-scrollbar-thumb {

@@ -1,8 +1,8 @@
-import home from './home.svg'
-import logo from './logo.svg'
-import search from './search.svg'
-import library from './library.svg'
-import plus from './plus.svg'
-import list from './list.svg'
+import home from './svgs/home.svg'
+import logo from './svgs/logo.svg'
+import search from './svgs/search.svg'
+import library from './svgs/library.svg'
+import plus from './svgs/plus.svg'
+import list from './svgs/list.svg'
 
 export { home, logo, search, library, plus, list}
