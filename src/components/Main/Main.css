@@ -1,5 +1,6 @@
 .main{
-    min-width: 80vw;
-    height: 100%;
-    border: 2px solid white;
+    max-height: calc(100vh - 13vh);
+    min-width: 74%;
+    border-radius: 10px;
+    background-color: var(--background);
 }

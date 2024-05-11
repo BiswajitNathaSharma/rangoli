@@ -1,10 +1,12 @@
 import React from 'react'
 import './Sidebar.css'
-import logo from '../../assets/logo.svg'
+import {Home, Library} from '../index'
+// import logo from '../../assets/logo.svg'
 function Sidebar() {
     return (
         <div className='sidebar'>
-            <img src={logo} alt="" />
+            <Home/>
+            <Library/>
         </div>
     )
 }

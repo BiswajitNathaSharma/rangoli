@@ -1,0 +1,65 @@
+.library{
+    background-color: #121212;
+    border-radius: 10px;
+    margin-top: 1vw;
+    padding: .8vw 0vw .8vw 2vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3vw;
+}
+.library img{
+    filter: invert(1);
+    cursor: pointer;
+}
+span{
+    cursor: pointer;
+}
+.first-child{
+    display: flex;
+    align-items: center;
+    gap: 1.2vw;
+    span{
+        font-size: 1vw;
+    }
+}
+.first-child > :nth-child(3) {
+    position: absolute;
+    right: 1vw;
+}
+.second-child{
+    display: flex;
+    gap: .5vw;
+}
+.third-child{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 1vw;
+    div{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+    }
+}
+.fourth-child{
+    overflow: auto;
+    max-height: calc(100vh - 62vh);
+}
+.fourth-child::-webkit-scrollbar {
+    width: 10px;
+}
+
+.fourth-child::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.fourth-child::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+.fourth-child::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

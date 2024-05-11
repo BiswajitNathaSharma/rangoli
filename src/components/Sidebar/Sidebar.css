@@ -1,5 +1,4 @@
 .sidebar{
-    min-width: 20vw;
-    height: 100%;
-    background-color: #121212;
+    min-width: 25%;
+    flex: 1;
 }
