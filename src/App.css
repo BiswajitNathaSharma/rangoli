@@ -1,12 +1,10 @@
 .body{
-    min-width: 100vw;
-    display: inline-flex;
+    display: flex;
     gap: 1vw;
     padding: .9vw 1vw;
-    position: relative;
+
 }
 .body > *:nth-child(3){
-    /* border: 2px solid green; */
     position: fixed;
     bottom: 0;
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import './Library.css'
 import { library, list, plus, search } from '../../assets'
-import PlaylistCard from '../PlaylistCard/PlaylistCard'
+import {VerticalCard} from '../index'
 
 function Library() {
     return (
@@ -25,15 +25,9 @@ function Library() {
                 </div>
             </div>
 
-            <div className="fourth-child">
-                <PlaylistCard/>
-                <PlaylistCard/>
-                <PlaylistCard/>
-                <PlaylistCard/>
-                <PlaylistCard/>
-                <PlaylistCard/>
-                <PlaylistCard/>
-            </div>
+            
+                <VerticalCard/>
+            
         </div>
     )
 }

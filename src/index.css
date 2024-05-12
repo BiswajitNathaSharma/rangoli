@@ -14,7 +14,6 @@
 body {
   background-color: black;
   color: white;
-  width: 100vw;
   height: 100vh;
 }
 
@@ -32,4 +31,22 @@ body {
 
 .button:hover {
   filter: invert(1);
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 50px;
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

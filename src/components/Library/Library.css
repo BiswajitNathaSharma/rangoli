@@ -8,7 +8,7 @@
     flex-direction: column;
     gap: 1.3vw;
 }
-.library img{
+.first-child > img, .third-child>img, .third-child img{
     filter: invert(1);
     cursor: pointer;
 }
@@ -43,27 +43,4 @@ span{
 
     }
 }
-.fourth-child{
-    overflow: auto;
-    max-height: calc(100vh - 62vh);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.fourth-child::-webkit-scrollbar {
-    width: 8px;
-}
 
-.fourth-child::-webkit-scrollbar-track {
-    border-radius: 50px;
-    background: transparent;
-}
-
-.fourth-child::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 5px;
-}
-
-.fourth-child::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}

@@ -1,0 +1,7 @@
+.VerticalCard{
+    overflow: auto;
+    max-height: calc(100vh - 62vh);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
