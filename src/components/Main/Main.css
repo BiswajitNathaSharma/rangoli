@@ -1,6 +1,20 @@
 .main{
     max-height: calc(100vh - 13vh);
-    min-width: 74%;
+    min-width: 75%;
     border-radius: 10px;
+    padding: 1vw;
     background-color: var(--background);
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.main > nav{
+    display: flex;
+    gap: 20px;
+}
+.music-section{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

@@ -5,3 +5,6 @@
     flex-direction: column;
     gap: 10px;
 }
+.VerticalCard img{
+    border-radius: 5px;
+}

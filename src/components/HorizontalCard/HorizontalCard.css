@@ -1,0 +1,10 @@
+.horizontal-card{
+    display: flex;
+    flex-grow: 1;
+    gap: 10px;
+    white-space: nowrap;
+    overflow-y: hidden;
+}
+.horizontal-card::-webkit-scrollbar {
+    display: none;
+}
