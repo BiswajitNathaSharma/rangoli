@@ -5,5 +5,11 @@ import library from './svgs/library.svg'
 import plus from './svgs/plus.svg'
 import list from './svgs/list.svg'
 import play from './svgs/play.svg'
+import next from './svgs/next.svg'
+import previous from './svgs/previous.svg'
+import volume from './svgs/volume.svg'
+import loud from './svgs/volumeLoud.svg'
+import muted from './svgs/volumeMuted.svg'
+import pause from './svgs/pause.svg'
 
-export { home, logo, search, library, plus, list, play}
+export { home, logo, search, library, plus, list, play, next, previous, volume, loud, muted, pause}
