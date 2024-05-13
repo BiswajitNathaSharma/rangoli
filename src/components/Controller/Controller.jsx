@@ -17,12 +17,18 @@ function Controller() {
                     <img src={next} alt="next" />
                 </div>
 
-                <div className="progress-bar">progress</div>
+                <div className="progress-bar">
+                <input type="range" />
+                </div>
                 
             </div>
 
             <div className="volume">
                 <img src={volume} alt="" />
+                <div className="progress-bar">
+                    <input type="range" />
+                </div>
+
             </div>
 
         </div>

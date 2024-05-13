@@ -1,4 +1,5 @@
 .sidebar{
+    height: calc(100vh - 10vh);
     min-width: 24%;
     flex: 1;
 }

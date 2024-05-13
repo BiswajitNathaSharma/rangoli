@@ -1,7 +1,7 @@
 .controller{
     min-width: 98vw;
     border-radius: 10px;
-    min-height: 10vh;
+    height: 10vh;
     background-color:var(--background);
     position: relative;
     padding: 0px 10px;
@@ -14,14 +14,16 @@
 }
 .controller .now-playing{
     max-height: 80%;
-    flex: 1;
+    flex: .77;
 }
 .controllers{
     width: 100%;
-    flex: 1;
+    height: 100%;
+    flex: 2;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    gap: 5vw;
 }
 .controllers .control-btn{
     display: flex;
@@ -29,14 +31,20 @@
 
 }
 .control-btn>:nth-child(2){
-    transform: scale(1.7);
+    transform: scale(1.9);
 }
 .control-btn>img, .volume>img{
     filter: invert(1);
-    width: 38px;
+    width: 33px;
+    cursor: pointer;
+}
+.control-btn>img:hover, .volume>img:hover{
+    opacity: .5 ;
 }
 .volume{
     display: flex;
     justify-content: flex-end;
-    flex: 1;
+    flex: .5;
+    gap: 30px;
+    align-items: center;
 }
