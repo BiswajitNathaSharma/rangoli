@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Main.css'
 import { HorizontalCard } from '../index'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateAllSongs } from '../../Fetures/slices/songSlice'
 function Main() {
-
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(updateAllSongs())
+    }, [])
+    
+    useSelector(state => console.log(state))
     return (
         <div className='main'>
             <nav>
