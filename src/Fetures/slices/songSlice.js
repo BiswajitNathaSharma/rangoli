@@ -1,7 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    songs: []
+    songs: [
+        {
+            song:1
+        }
+    ],
+    loading: true
 }
 
 export const slice = createSlice({
@@ -9,9 +14,13 @@ export const slice = createSlice({
     initialState,
     reducers:{
         updateAllSongs(state, action){
-            fetch('https://saavn.dev/api/search/playlists?query=Indie')
+            fetch('https://saavn.dev/api/songs/yDeAS8Eh/suggestions')
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then((data) => {
+                data.data.map(song =>
+                    state.songs.push(song)
+                )
+            })
         }
     }
 })
