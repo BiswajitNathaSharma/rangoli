@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './HomeSong.css';
 import { HorizontalCard } from '../index';
+import fetchWithQuoteConversion from '../../utils/fetchWithQuoteConversion';
 
 const fetchData = async (query, setState) => {
-    const response = await fetch(`https://saavn.dev/api/search/playlists?query=${query}&limit=100`);
+    const response = await fetchWithQuoteConversion(`https://saavn.dev/api/search/playlists?query=${query}&limit=100`);
     const data = await response.json();
     if (data.success) {
         setState(data.data.results);

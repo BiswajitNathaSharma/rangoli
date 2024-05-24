@@ -1,0 +1,26 @@
+.song{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.details{
+    display: flex;
+    align-items: center;
+}
+.minor-details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 17px;
+    gap: 20px;
+    max-width: max-content;
+}
+.minor-details>*::first-letter{
+    text-transform: uppercase;
+}
+.minor-details > img{
+    filter: invert(1);
+    background-color: var(--background);
+    border-radius: 50%;
+    max-width: 13px;
+}

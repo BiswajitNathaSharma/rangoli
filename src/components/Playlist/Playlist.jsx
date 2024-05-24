@@ -3,6 +3,7 @@ import './Playlist.css'
 import { SongsCard } from '../'
 import { like } from '../../assets'
 import { useParams } from 'react-router-dom'
+import fetchWithQuoteConversion from '../../utils/fetchWithQuoteConversion'
 function Playlist() {
 
     const [playlistName, setPlaylistName] = useState("")
@@ -11,10 +12,8 @@ function Playlist() {
     const [songCount, setSongCount] = useState(0)
     const [playlistSongs, setPlaylistSongs] = useState([])
     const { playlistId } = useParams()
-    console.log(playlistId)
     useEffect(() => {
-        fetch(`https://saavn.dev/api/playlists?id=${playlistId}&limit=100`)
-            .then(res => res.json())
+        fetchWithQuoteConversion(`https://saavn.dev/api/playlists?id=${playlistId}&limit=100`)
             .then((data) => {
                 if (data.success) {
                     setPlaylistName(data.data.name)
@@ -46,6 +45,7 @@ function Playlist() {
                     playlistSongs.map((song, index) => {
                         return <SongsCard
                             key={song.id}
+                            id={song.id}
                             index={index}
                             songName={song.name}
                             duration={song.duration}
@@ -56,6 +56,7 @@ function Playlist() {
                     })
                 }
             </div>
+            
         </div>
     )
 }
