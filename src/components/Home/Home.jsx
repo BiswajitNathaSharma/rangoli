@@ -1,10 +1,11 @@
 import React from 'react'
 import './Home.css'
 import {home, search} from "../../assets/index"
+import { Link } from 'react-router-dom'
 function Home() {
     return (
         <div className='home'>
-            <div className="logo">LOGO</div>
+            <Link to={'/'} className="logo no-decoration">LOGO</Link>
             <div className='child1'>
             <img src={home} alt="" />
             <span>Home</span>

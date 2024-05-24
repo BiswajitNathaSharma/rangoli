@@ -51,7 +51,7 @@ function Playlist() {
                             duration={song.duration}
                             artists={song.artists}
                             album={song.album.name}
-                            imgUrl={song.image[0].url}
+                            imgUrl={song.image[1].url}
                         />
                     })
                 }

@@ -1,41 +1,50 @@
-import React,{useState, useEffect} from 'react'
-import './HomeSong.css'
-import {HorizontalCard} from '../index'
+import React, { useState, useEffect } from 'react';
+import './HomeSong.css';
+import { HorizontalCard } from '../index';
+
+const fetchData = async (query, setState) => {
+    const response = await fetch(`https://saavn.dev/api/search/playlists?query=${query}&limit=100`);
+    const data = await response.json();
+    if (data.success) {
+        setState(data.data.results);
+        localStorage.setItem(query, JSON.stringify(data.data.results));
+    } else {
+        console.log(data.message);
+    }
+};
+
+const getDataFromLocalStorage = (key) => {
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : null;
+};
+
 function HomeSong() {
-    const [romanticSong, setRomanticSong] = useState([])
-    const [bhajan, setBhajan] = useState([])
-    const [party, setParty] = useState([])
-    const [mostSearched, setMostSearched] = useState([])
+    const [romanticSong, setRomanticSong] = useState(getDataFromLocalStorage('romantic') || []);
+    const [bhajan, setBhajan] = useState(getDataFromLocalStorage('spiritual') || []);
+    const [party, setParty] = useState(getDataFromLocalStorage('party') || []);
+    const [mostSearched, setMostSearched] = useState(getDataFromLocalStorage('trending') || []);
+
     useEffect(() => {
-        fetch("https://saavn.dev/api/search/playlists?query=romantic")
-            .then(res => res.json())
-            .then((data) => {
-                data.success ? setRomanticSong(data.data.results) : console.log(data.message)
-            })
+        if (romanticSong.length === 0) {
+            fetchData('romantic', setRomanticSong);
+        }
 
-        fetch("https://saavn.dev/api/search/playlists?query=spiritual ")
-            .then(res => res.json())
-            .then((data) => {
-                data.success ? setBhajan(data.data.results) : console.log(data.message)
-            })
+        if (bhajan.length === 0) {
+            fetchData('spiritual', setBhajan);
+        }
 
-        fetch("https://saavn.dev/api/search/playlists?query=party ")
-            .then(res => res.json())
-            .then((data) => {
-                data.success ? setParty(data.data.results) : console.log(data.message)
-            })
+        if (party.length === 0) {
+            fetchData('party', setParty);
+        }
 
-        fetch("https://saavn.dev/api/search/playlists?query=trending")
-            .then(res => res.json())
-            .then((data) => {
-                data.success ? setMostSearched(data.data.results) : console.log(data.message)
-            })
+        if (mostSearched.length === 0) {
+            fetchData('trending', setMostSearched);
+        }
+    }, [romanticSong, bhajan, party, mostSearched]);
 
-
-    }, [])
     return (
         <>
-        <nav>
+            <nav>
                 <button className="button">All</button>
                 <button className="button">Playlist</button>
                 <button className="button">Podcast</button>
@@ -43,24 +52,23 @@ function HomeSong() {
             <section>
                 <div className="music-section">
                     <h2>Top Romantic</h2>
-                    <HorizontalCard category={romanticSong}/>
+                    <HorizontalCard category={romanticSong} />
                 </div>
                 <div className="music-section">
                     <h2>Trending Now</h2>
-                    <HorizontalCard category={mostSearched}/>
+                    <HorizontalCard category={mostSearched} />
                 </div>
                 <div className="music-section">
-                    <h2>Top Dance </h2>
-                    <HorizontalCard category={party}/>
+                    <h2>Top Dance</h2>
+                    <HorizontalCard category={party} />
                 </div>
                 <div className="music-section">
-                    <h2>Spiritual </h2>
-                    <HorizontalCard category={bhajan}/>
+                    <h2>Spiritual</h2>
+                    <HorizontalCard category={bhajan} />
                 </div>
             </section>
         </>
-        
-    )
+    );
 }
 
-export default HomeSong
+export default HomeSong;
