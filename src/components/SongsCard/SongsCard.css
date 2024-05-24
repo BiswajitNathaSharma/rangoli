@@ -1,0 +1,45 @@
+.song-card{
+    min-width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 10px;
+    transition: .3s all ease-in-out;
+    border-radius: 10px;
+}
+.song-card:hover{
+    background-color: #191919;
+}
+.song-card > *{
+    display:flex;
+    align-items: center;
+    gap: 10px;
+}
+.song-card>:nth-child(1){
+    width: 35%;
+    position: relative;
+}
+.song-card>:nth-child(1)>:nth-child(3){
+    padding-left: 5px;
+}
+.song-card>:nth-child(2){
+    width: 50%;
+    justify-content: space-between;
+}
+.song-card>:nth-child(3){
+    width: 8%;
+    justify-content: space-between;
+}
+.index-image-name > img{
+    height: 95%;
+    width: 50px;
+    border-radius: 2px;
+}
+.like-duration-more>img{
+    width: 2.2vw;
+    filter: invert(1);
+}
+.artist-album>*{
+    flex: 1;
+}

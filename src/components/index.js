@@ -7,5 +7,8 @@ import PlaylistCard from "./PlaylistCard/PlaylistCard";
 import MusicCard from "./MusicCard/MusicCard";
 import HorizontalCard from "./HorizontalCard/HorizontalCard";
 import VerticalCard from "./VerticalCard/VerticalCard";
+import Playlist from "./Playlist/Playlist";
+import HomeSong from "./HomeSong/HomeSong";
+import SongsCard from "./SongsCard/SongsCard";
 
-export{Sidebar, Main, Home, Library, Controller, MusicCard, HorizontalCard, VerticalCard, PlaylistCard}
+export{Sidebar, Main, Home, Library, Controller, MusicCard, HorizontalCard, VerticalCard, PlaylistCard, Playlist, HomeSong, SongsCard}

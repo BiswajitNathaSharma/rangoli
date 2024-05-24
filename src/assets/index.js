@@ -11,5 +11,6 @@ import volume from './svgs/volume.svg'
 import loud from './svgs/volumeLoud.svg'
 import muted from './svgs/volumeMuted.svg'
 import pause from './svgs/pause.svg'
+import like from './svgs/like.svg'
 
-export { home, logo, search, library, plus, list, play, next, previous, volume, loud, muted, pause}
+export { home, logo, search, library, plus, list, play, next, previous, volume, loud, muted, pause, like}

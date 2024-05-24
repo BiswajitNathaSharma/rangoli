@@ -4,13 +4,13 @@ import { MusicCard } from '../index'
 import './HorizontalCard.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateAllSongs } from '../../Fetures/slices/songSlice';
+import { Link } from 'react-router-dom';
 
 function HorizontalCard({category}) {
     const containerRef = useRef(null);
     const [isDragging, setIsDragging] = useState(false);
     const [startPosition, setStartPosition] = useState(0);
     const [currentTranslate, setCurrentTranslate] = useState(0);
-    console.log(typeof category)
     const handleMouseDown = (e) => {
         setIsDragging(true);
         setStartPosition(e.clientX - containerRef.current.offsetLeft);
@@ -44,8 +44,10 @@ function HorizontalCard({category}) {
                 onMouseLeave={handleMouseLeave}>
                     {category.map((song) => {
                 return (
+                    
                     <MusicCard
                         key={song.id}
+                        id= {song.id}
                         name={song.name}
                         songCount={song.songCount}
                         img={song.image[2].url} 

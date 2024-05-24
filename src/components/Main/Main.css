@@ -9,12 +9,3 @@
     flex-direction: column;
     gap: 30px;
 }
-.main > nav{
-    display: flex;
-    gap: 20px;
-}
-.music-section{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}

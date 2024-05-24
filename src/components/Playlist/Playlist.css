@@ -1,0 +1,59 @@
+.playlist{
+    min-height: 100%;
+    margin: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+.song-count{
+    font-size: 1.3vw;
+}
+.details{
+    height: 250px;
+    display: flex;
+    align-items: center;
+    gap: 4vw;
+}
+.details > img{
+    height: 250px;
+    width: 300px;
+    border-radius: 30px;
+    object-fit: contain;
+}
+.details > .discription >*{
+    margin-top: 15px;
+}
+.buttons{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+.buttons > *{
+    cursor: pointer;
+}
+.buttons > button{
+    padding: 10px 20px;
+    margin-right: 10px;
+    min-width: 100px;
+    font-size: 1.5vw;
+    border-radius: 20px;
+    border: none;
+    
+}
+.buttons> img{
+    width: 3vw;
+    filter: invert(1);
+}
+.details .name{
+    font-size: 2.5vw;
+    font-weight: 600;
+}
+.about{
+    font-size: 1.3vw;
+    font-weight: 500;
+}
+.songs{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
