@@ -8,26 +8,26 @@
     box-sizing: border-box;
     overflow: hidden;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 
 }
 .controller .now-playing{
+    min-width: 24%;
     max-height: 80%;
-    flex: .77;
 }
 .controllers{
     width: 100%;
     height: 100%;
-    flex: 2;
+    flex: 1.5;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    gap: 5vw;
+    justify-content: center;
+    gap: 2vw;
 }
 .controllers .control-btn{
     display: flex;
-    gap: 40px;
+    gap: 30px;
+    align-items: center;
 
 }
 .control-btn>:nth-child(2){
@@ -41,10 +41,50 @@
 .control-btn>img:hover, .volume>img:hover{
     opacity: .5 ;
 }
+.player-range{
+    height: 100%;
+    flex: 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+.progress-bar{
+    min-width: 65%;
+    height: 10%;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    position: relative;
+}
+.progress-bar > .hr-with-dot{
+    width: 90%;
+    height: 100%;
+    border-radius: inherit;
+    background-color: rgb(73, 73, 73);
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.hr-with-dot::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgb(96, 95, 95);
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+}
 .volume{
     display: flex;
     justify-content: flex-end;
     flex: .5;
-    gap: 30px;
+    gap: 10px;
+    height: 100%;
     align-items: center;
+}
+.volume > .progress-bar{
+    height: 75;
 }

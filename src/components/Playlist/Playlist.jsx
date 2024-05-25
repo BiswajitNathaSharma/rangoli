@@ -4,6 +4,7 @@ import { SongsCard } from '../'
 import { like } from '../../assets'
 import { useParams } from 'react-router-dom'
 import fetchWithQuoteConversion from '../../utils/fetchWithQuoteConversion'
+import { useSelector } from 'react-redux'
 function Playlist() {
 
     const [playlistName, setPlaylistName] = useState("")
@@ -24,6 +25,7 @@ function Playlist() {
                 }
             })
     }, [playlistId])
+    const likedSongs = useSelector(state => state.songs.LikedSongs);
     return (
         <div className='playlist'>
             <div className="details">
@@ -43,6 +45,7 @@ function Playlist() {
             <div className="songs">
                 {
                     playlistSongs.map((song, index) => {
+                        const isLiked = likedSongs.some(likedSongs => likedSongs.id === song.id);
                         return <SongsCard
                             key={song.id}
                             id={song.id}
@@ -52,6 +55,7 @@ function Playlist() {
                             artists={song.artists}
                             album={song.album.name}
                             imgUrl={song.image[1].url}
+                            isLiked={isLiked}
                         />
                     })
                 }

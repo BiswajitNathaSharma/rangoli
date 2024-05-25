@@ -42,7 +42,6 @@
 }
 .buttons> img{
     width: 3vw;
-    filter: invert(1);
 }
 .details .name{
     font-size: 2.5vw;

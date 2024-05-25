@@ -2,9 +2,6 @@ import React, { useEffect } from 'react'
 import { useState, useRef } from 'react';
 import { MusicCard } from '../index'
 import './HorizontalCard.css'
-import { useDispatch, useSelector } from 'react-redux';
-import { updateAllSongs } from '../../Fetures/slices/songSlice';
-import { Link } from 'react-router-dom';
 
 function HorizontalCard({category}) {
     const containerRef = useRef(null);
@@ -17,7 +14,6 @@ function HorizontalCard({category}) {
         setCurrentTranslate(containerRef.current.scrollLeft);
         containerRef.current.style.cursor = 'grabbing';
     };
-
     const handleMouseMove = (e) => {
         if (!isDragging) return;
         const dragDistance = e.clientX - containerRef.current.offsetLeft - startPosition;
@@ -33,6 +29,22 @@ function HorizontalCard({category}) {
         setIsDragging(false);
         containerRef.current.style.cursor = 'grab';
     };
+    const handleWheel = (e) => {
+        e.preventDefault();
+        containerRef.current.scrollLeft += e.deltaY;
+    };
+
+    useEffect(() => {
+        const container = containerRef.current;
+        if (container) {
+            container.addEventListener('wheel', handleWheel);
+        }
+        return () => {
+            if (container) {
+                container.removeEventListener('wheel', handleWheel);
+            }
+        };
+    }, []);
     return (
         <>
         <div

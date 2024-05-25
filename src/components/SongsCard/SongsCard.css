@@ -38,7 +38,6 @@
 }
 .like-duration-more>img{
     width: 2.2vw;
-    filter: invert(1);
 }
 .artist-album>*{
     flex: 1;
