@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 
 function Library() {
     const likedSongs = useSelector(state => state.songs.LikedSongs);
+    const likedPlaylist = useSelector(state => state.playlists.likedPlaylist)
     return (
         <div className='library'>
             <div className="first-child">
@@ -29,8 +30,16 @@ function Library() {
 
             <div className="VerticalCard">
             <PlaylistCard songCount={likedSongs.length} name="Your favourite Songs" to='/playlist/Liked'img={liked}/>
-            <PlaylistCard/>
-            <PlaylistCard/>
+            {
+                likedPlaylist.map((playlist) => {
+                    return <PlaylistCard 
+                    key={playlist.playlistId}
+                    songCount={playlist.songCount} 
+                    name={playlist.playlistName} 
+                    to={`/playlist/${playlist.playlistId}`}
+                    img={playlist.imgUrl}/>
+                })
+            }
             </div>
         </div>
     )

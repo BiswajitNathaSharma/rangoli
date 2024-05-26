@@ -4,8 +4,7 @@ import { HorizontalCard } from '../index';
 import fetchWithQuoteConversion from '../../utils/fetchWithQuoteConversion';
 
 const fetchData = async (query, setState) => {
-    const response = await fetchWithQuoteConversion(`https://saavn.dev/api/search/playlists?query=${query}&limit=100`);
-    const data = await response.json();
+    const data = await fetchWithQuoteConversion(`https://saavn.dev/api/search/playlists?query=${query}&limit=100`);
     if (data.success) {
         setState(data.data.results);
         localStorage.setItem(query, JSON.stringify(data.data.results));

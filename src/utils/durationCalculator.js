@@ -1,5 +1,4 @@
 function convertSecondsToMinutesSeconds(duration) {
-    console.log(typeof duration)
     const durationStr = duration.toString()
     if (durationStr.includes('.')) {
         return duration;
