@@ -14,5 +14,6 @@ import pause from './svgs/pause.svg'
 import like from './svgs/like.svg'
 import dot from './svgs/dot.svg'
 import liked from './svgs/liked.svg'
+import likedSong from './images/liked-song.png'
 
-export { home, logo, search, library, plus, list, play, next, previous, volume, loud, muted, pause, like, dot, liked}
+export { home, logo, search, library, plus, list, play, next, previous, volume, loud, muted, pause, like, dot, liked, likedSong}

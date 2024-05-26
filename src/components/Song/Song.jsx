@@ -6,60 +6,63 @@ import { useParams } from 'react-router-dom'
 import fetchWithQuoteConversion from '../../utils/fetchWithQuoteConversion';
 import { useDispatch, useSelector } from 'react-redux'
 import { addSong, removeSong } from '../../Features/songs/songsSlice'
+import convertSecondsToMinutesSeconds from '../../utils/durationCalculator'
 
 function Song() {
-    const { songId } = useParams()
-    const [imgUrl, setImgUrl] = useState("")
+    const { id } = useParams()
+    const [imgUrl, setImgUrl] = useState()
     const [songName, setSongName] = useState("")
     const [label, setLabel] = useState("")
     const [album, setAlbum] = useState("")
+    const [artists, setArtists] = useState([])
     const [Year, setYear] = useState("")
     const [playCount, setPlayCount] = useState("")
     const [Language, setLanguage] = useState("")
     const [copyright, setCopyright] = useState("")
     const [suggestedSong, setSuggestedSong] = useState([])
+    const [duration, setDuration] = useState("")
     const dispatch = useDispatch()
     useEffect(() => {
-        fetchWithQuoteConversion(`https://saavn.dev/api/songs/${songId}`)
+        fetchWithQuoteConversion(`https://saavn.dev/api/songs/${id}`)
             .then((data) => {
                 if (data.success) {
                     data = data.data[0]
                     setSongName(data.name)
-                    setImgUrl(data.image[2].url)
+                    setImgUrl(data.image)
                     setLabel(data.label)
                     setAlbum(data.album.name)
+                    setArtists(data.artists)
                     setPlayCount(data.playCount)
+                    setDuration(data.duration)
                     setCopyright(data.copyright)
                     setYear(data.year)
                     setLanguage(data.language)
                 }
             })
-        fetchWithQuoteConversion(`https://saavn.dev/api/songs/${songId}/suggestions?limit=20`)
+        fetchWithQuoteConversion(`https://saavn.dev/api/songs/${id}/suggestions?limit=20`)
             .then((data) => {
                 if (data.success) {
                     setSuggestedSong(data.data)
                 }
             })
-    }, [songId])
-    const likedSongs = useSelector(state => state.songs.LikedSongs);
-
-    const isSongLiked = likedSongs.some(song => song.songId === songId);
-console.log(likedSongs)
-    console.log(isSongLiked)
+        }, [id])
+        const songImg = imgUrl ? imgUrl[2].url : ""
+        const songDuration = convertSecondsToMinutesSeconds(duration)
+        const likedSongs = useSelector(state => state.songs.LikedSongs);
+        const isSongLiked = likedSongs.some(song => song.id === id)
     const handleToggleLike = (e) => {
         e.preventDefault();
         if (isSongLiked) {
-            dispatch(removeSong(songId));
+            dispatch(removeSong(id));
         } else {
-            dispatch(addSong({songId, songName, album}));
+            dispatch(addSong({id, songName, album, imgUrl, songDuration, artists}));
         }
     };
-
     return (
         <div className='song'>
             <div className="details">
 
-                <img src={imgUrl} alt={songName} />
+                <img src={songImg} alt={songName} />
 
                 <div className="discription">
                     <div className="name">{songName}</div>
@@ -86,10 +89,10 @@ console.log(likedSongs)
                 </div>
             </div>
             <div className="songs">
+                <h1>You Might Like</h1>
                 {
                     suggestedSong.map((song, index) => {
                         const isLiked = likedSongs.some(likedSong => likedSong.id === song.id);
-
                         return <SongsCard
                             key={song.id}
                             id={song.id}
@@ -98,7 +101,7 @@ console.log(likedSongs)
                             duration={song.duration}
                             artists={song.artists}
                             album={song.album.name}
-                            imgUrl={song.image[1].url}
+                            imgUrl={song.image}
                             isLiked={isLiked}
                         />
                     })

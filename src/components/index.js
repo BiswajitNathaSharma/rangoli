@@ -6,10 +6,9 @@ import Controller from "./Controller/Controller";
 import PlaylistCard from "./PlaylistCard/PlaylistCard";
 import MusicCard from "./MusicCard/MusicCard";
 import HorizontalCard from "./HorizontalCard/HorizontalCard";
-import VerticalCard from "./VerticalCard/VerticalCard";
 import Playlist from "./Playlist/Playlist";
 import HomeSong from "./HomeSong/HomeSong";
 import SongsCard from "./SongsCard/SongsCard";
 import Song from "./Song/Song.jsx";
 
-export{Sidebar, Main, Home, Library, Controller, MusicCard, HorizontalCard, VerticalCard, PlaylistCard, Playlist, HomeSong, SongsCard, Song}
+export{Sidebar, Main, Home, Library, Controller, MusicCard, HorizontalCard, PlaylistCard, Playlist, HomeSong, SongsCard, Song}

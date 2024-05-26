@@ -3,6 +3,11 @@
     flex-direction: column;
     gap: 50px;
 }
+.songs > h1{
+    font-size: 30px;
+    font-weight: 900;
+    padding: 20px 0px;
+}
 .details{
     display: flex;
     align-items: center;

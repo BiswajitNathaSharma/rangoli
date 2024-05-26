@@ -11,9 +11,6 @@ export const songsSlice = createSlice({
         addSong: (state, action) => {
             const songExists = state.LikedSongs.some(song => song.id === action.payload);
             if (!songExists) {
-                const song = {
-                    id: action.payload,
-                };
                 state.LikedSongs.push(action.payload);
             }
         },
@@ -23,5 +20,5 @@ export const songsSlice = createSlice({
     },
 });
 
-export const { addSong, removeSong, toggleLike } = songsSlice.actions;
+export const { addSong, removeSong } = songsSlice.actions;
 export default songsSlice.reducer;

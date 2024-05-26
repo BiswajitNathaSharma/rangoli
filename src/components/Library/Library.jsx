@@ -1,9 +1,11 @@
 import React from 'react'
 import './Library.css'
-import { library, list, plus, search } from '../../assets'
-import {VerticalCard} from '../index'
+import { library, liked, list, plus, search } from '../../assets'
+import {PlaylistCard} from '../'
+import { useSelector } from 'react-redux';
 
 function Library() {
+    const likedSongs = useSelector(state => state.songs.LikedSongs);
     return (
         <div className='library'>
             <div className="first-child">
@@ -25,9 +27,11 @@ function Library() {
                 </div>
             </div>
 
-            
-                <VerticalCard/>
-            
+            <div className="VerticalCard">
+            <PlaylistCard songCount={likedSongs.length} name="Your favourite Songs" to='/playlist/Liked'img={liked}/>
+            <PlaylistCard/>
+            <PlaylistCard/>
+            </div>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Playlist.css'
 import { SongsCard } from '../'
-import { like } from '../../assets'
+import { like, likedSong } from '../../assets'
 import { useParams } from 'react-router-dom'
 import fetchWithQuoteConversion from '../../utils/fetchWithQuoteConversion'
 import { useSelector } from 'react-redux'
@@ -11,10 +11,22 @@ function Playlist() {
     const [imgUrl, setImgUrl] = useState("")
     const [discription, setDiscription] = useState("")
     const [songCount, setSongCount] = useState(0)
+    const [likedSongPlaylist, setLikedSongPlaylist] = useState([])
     const [playlistSongs, setPlaylistSongs] = useState([])
+    const [favourite, setFavourite] = useState(false)
     const { playlistId } = useParams()
+    const likedSongs = useSelector(state => state.songs.LikedSongs);
+    
     useEffect(() => {
-        fetchWithQuoteConversion(`https://saavn.dev/api/playlists?id=${playlistId}&limit=100`)
+        if (playlistId==="Liked") {
+                    setPlaylistName("Liked Songs")
+                    setImgUrl(likedSong)
+                    setDiscription("Songs that are liked by you")
+                    setSongCount(likedSongs.length)
+                    setLikedSongPlaylist(likedSongs)
+                    setFavourite(true)
+                    
+        }else fetchWithQuoteConversion(`https://saavn.dev/api/playlists?id=${playlistId}&limit=100`)
             .then((data) => {
                 if (data.success) {
                     setPlaylistName(data.data.name)
@@ -25,7 +37,6 @@ function Playlist() {
                 }
             })
     }, [playlistId])
-    const likedSongs = useSelector(state => state.songs.LikedSongs);
     return (
         <div className='playlist'>
             <div className="details">
@@ -43,7 +54,7 @@ function Playlist() {
                 </div>
             </div>
             <div className="songs">
-                {
+                { !favourite ?
                     playlistSongs.map((song, index) => {
                         const isLiked = likedSongs.some(likedSongs => likedSongs.id === song.id);
                         return <SongsCard
@@ -54,8 +65,24 @@ function Playlist() {
                             duration={song.duration}
                             artists={song.artists}
                             album={song.album.name}
-                            imgUrl={song.image[1].url}
+                            imgUrl={song.image}
                             isLiked={isLiked}
+                        />
+                    })
+                    :
+                    likedSongPlaylist.map((song, index) => {
+                        const isLiked = likedSongs.some(likedSongs => likedSongs.id === song.id);
+                        return <SongsCard
+                            key={song.id}
+                            id={song.id}
+                            index={index}
+                            songName={song.songName}
+                            duration={song.duration}
+                            artists={song.artists}
+                            album={song.album}
+                            imgUrl={song.imgUrl}
+                            isLiked={isLiked}
+                            isFavourite={favourite}
                         />
                     })
                 }

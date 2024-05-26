@@ -1,12 +1,12 @@
 .library{
     background-color: #121212;
     border-radius: 10px;
-    margin-top: 1vw;
     padding: .8vw 0vw .8vw 2vw;
     position: relative;
     display: flex;
     flex-direction: column;
     gap: 1.3vw;
+    flex: 1;
 }
 .first-child > img, .third-child>img, .third-child img{
     filter: invert(1);
@@ -44,3 +44,13 @@ span{
     }
 }
 
+.VerticalCard{
+    overflow: auto;
+    max-height: calc(100vh - 61vh);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.VerticalCard>img{
+    border-radius: 5px;
+}

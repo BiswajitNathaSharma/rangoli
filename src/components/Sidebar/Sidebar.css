@@ -1,5 +1,8 @@
 .sidebar{
-    height: calc(100vh - 10vh);
+    max-height: calc(100vh - 10vh);
     min-width: 24%;
-    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
