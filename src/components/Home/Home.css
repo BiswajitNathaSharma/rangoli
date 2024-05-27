@@ -2,13 +2,30 @@
     background-color: #121212;
     border-radius: 10px;
     padding: .8vw 2vw;
-    max-height: min-content;
-    /* flex: 1; */
+    max-height: 28%;
 }
+.logo-withNavigate{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo-withNavigate > .navigation{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.navigation > *{
+    padding: 5px;
+    background-color: #2A2A2A;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 .logo{
     font-size: 2vw;
     font-weight: 600;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
 }
 .child1, .child2{
     display: flex;

@@ -8,6 +8,14 @@
     font-weight: 900;
     padding: 20px 0px;
 }
+.song .song-discription{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.song-discription> .buttons{
+    margin-top: 10px;
+}
 .details{
     display: flex;
     align-items: center;

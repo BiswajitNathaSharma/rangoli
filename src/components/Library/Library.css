@@ -7,6 +7,7 @@
     flex-direction: column;
     gap: 1.3vw;
     flex: 1;
+    height: calc(100% - 28%);
 }
 .first-child > img, .third-child>img, .third-child img{
     filter: invert(1);

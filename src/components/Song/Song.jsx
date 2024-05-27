@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Song.css'
 import { dot, like, liked } from '../../assets'
 import SongsCard from '../SongsCard/SongsCard'
@@ -7,6 +7,7 @@ import fetchWithQuoteConversion from '../../utils/fetchWithQuoteConversion';
 import { useDispatch, useSelector } from 'react-redux'
 import { addSong, removeSong } from '../../Features/songs/songsSlice'
 import convertSecondsToMinutesSeconds from '../../utils/durationCalculator'
+import { PlayerContext } from '../../Context/PlayerContext'
 
 function Song() {
     const { id } = useParams()
@@ -22,6 +23,7 @@ function Song() {
     const [suggestedSong, setSuggestedSong] = useState([])
     const [duration, setDuration] = useState("")
     const dispatch = useDispatch()
+    const {play, playWithId} = useContext(PlayerContext)
     useEffect(() => {
         fetchWithQuoteConversion(`https://saavn.dev/api/songs/${id}`)
             .then((data) => {
@@ -45,6 +47,7 @@ function Song() {
                     setSuggestedSong(data.data)
                 }
             })
+            playWithId(id)
         }, [id])
         const songImg = imgUrl ? imgUrl[2].url : ""
         const songDuration = convertSecondsToMinutesSeconds(duration)
@@ -64,7 +67,7 @@ function Song() {
 
                 <img src={songImg} alt={songName} />
 
-                <div className="discription">
+                <div className="song-discription">
                     <div className="name">{songName}</div>
                     <div className="about">
                         <span>Song By {label}</span>
@@ -82,7 +85,7 @@ function Song() {
                     </div>
                     <div className="copyright">{copyright}</div>
                     <div className="buttons">
-                        <button>Play</button>
+                        <button onClick={()=>play()}>Play</button>
                         <img src={isSongLiked ? liked : like} alt="like" onClick={handleToggleLike} />
 
                     </div>

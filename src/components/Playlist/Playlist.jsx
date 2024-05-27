@@ -47,6 +47,7 @@ function Playlist() {
                     setdescription(data.data.description)
                     setSongCount(data.data.songCount)
                     setPlaylistSongs(data.data.songs)
+                    setFavourite(false)
                 }
             })
     }, [playlistId])
@@ -62,7 +63,7 @@ function Playlist() {
                     <div className="song-count">Total songs: {songCount}</div>
                     <div className="buttons">
                         <button>Play</button>
-                        <img src={isPlaylistLiked ? liked : like} alt="" onClick={handleToggleLike} />
+                        <img src={isPlaylistLiked || favourite ? liked : like} alt="" onClick={handleToggleLike} />
                     </div>
                 </div>
             </div>

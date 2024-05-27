@@ -1,16 +1,21 @@
+import { useContext, useEffect } from 'react'
 import './App.css'
-import { Sidebar, Main, Controller} from './components'
-import { Outlet } from 'react-router-dom'
+import { PlayerContext } from './Context/PlayerContext'
+import { Sidebar, Main, Controller } from './components'
 function App() {
+  const { audioRef, trackSrc, track } = useContext(PlayerContext)
 
-  return (
-    <>
+return (
     <div className="body">
-      <Sidebar/>
-      <Main/>
-      <Controller/>
+      <Sidebar />
+      <Main />
+      <Controller />
+      {
+        track?
+      <audio ref={audioRef} preload='auto'  src={trackSrc} ></audio>
+        : null
+      }
     </div>
-    </>
   )
 }
 

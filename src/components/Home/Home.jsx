@@ -1,11 +1,18 @@
 import React from 'react'
 import './Home.css'
-import {home, search} from "../../assets/index"
-import { Link } from 'react-router-dom'
+import {forward, backward, home, search} from "../../assets/index"
+import { Link, useNavigate } from 'react-router-dom'
 function Home() {
+    const navigte = useNavigate()
     return (
         <div className='home'>
-            <Link to={'/'} className="logo no-decoration">LOGO</Link>
+            <div className="logo-withNavigate">
+            <Link to={'/'} className="logo no-decoration">SHRUTI</Link>
+            <div className="navigation">
+                <img src={backward} alt="" onClick={()=>navigte(-1)}/>
+                <img src={forward} alt="" onClick={()=>navigte(1)}/>
+            </div>
+            </div>
             <div className='child1'>
             <img src={home} alt="" />
             <span>Home</span>
