@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './HomeSong.css';
 import { HorizontalCard } from '../index';
 import fetchWithQuoteConversion from '../../utils/fetchWithQuoteConversion';
+import { useLoading } from '../../Context/loadingContext';
 
 const fetchData = async (query, setState) => {
-    const data = await fetchWithQuoteConversion(`https://saavn.dev/api/search/playlists?query=${query}&limit=100`);
+    const data = await fetchWithQuoteConversion(`https://saavn.dev/api/search/playlists?query=${query}&limit=100`, toggleLoading);
     if (data.success) {
         setState(data.data.results);
         localStorage.setItem(query, JSON.stringify(data.data.results));
@@ -19,6 +20,7 @@ const getDataFromLocalStorage = (key) => {
 };
 
 function HomeSong() {
+    const { isLoading, toggleLoading } = useLoading();
     const [romanticSong, setRomanticSong] = useState(getDataFromLocalStorage('romantic') || []);
     const [bhajan, setBhajan] = useState(getDataFromLocalStorage('spiritual') || []);
     const [party, setParty] = useState(getDataFromLocalStorage('party') || []);
@@ -41,7 +43,6 @@ function HomeSong() {
             fetchData('trending', setMostSearched);
         }
     }, [romanticSong, bhajan, party, mostSearched]);
-
     return (
         <>
             <nav>
@@ -59,7 +60,7 @@ function HomeSong() {
                     <HorizontalCard category={mostSearched} />
                 </div>
                 <div className="music-section">
-                    <h2>Top Dance</h2>
+                    <h2>Top Party</h2>
                     <HorizontalCard category={party} />
                 </div>
                 <div className="music-section">

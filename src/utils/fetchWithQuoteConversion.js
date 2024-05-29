@@ -12,10 +12,19 @@ const convertQuotesInObject = (obj) => {
     return obj;
 };
 
-const fetchWithQuoteConversion = async (url) => {
-    const res = await fetch(url);
-    const data = await res.json();
-    return convertQuotesInObject(data);
+const fetchWithQuoteConversion = async (url, toggleLoading) => {
+    try {
+        toggleLoading(true); // Set loading to true
+        const res = await fetch(url);
+        const data = await res.json();
+        const convertedData = convertQuotesInObject(data);
+        toggleLoading(false); // Set loading to false
+        return convertedData;
+    } catch (error) {
+        toggleLoading(true); // Set loading to false if there's an error
+        console.log("error from fetching data:",error)
+        throw error;
+    }
 };
 
 export default fetchWithQuoteConversion;

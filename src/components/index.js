@@ -10,5 +10,6 @@ import Playlist from "./Playlist/Playlist";
 import HomeSong from "./HomeSong/HomeSong";
 import SongsCard from "./SongsCard/SongsCard";
 import Song from "./Song/Song.jsx";
+import Loader from "./Loader/Loader.jsx";
 
-export{Sidebar, Main, Home, Library, Controller, MusicCard, HorizontalCard, PlaylistCard, Playlist, HomeSong, SongsCard, Song}
+export{Sidebar, Main, Home, Library, Controller, MusicCard, HorizontalCard, PlaylistCard, Playlist, HomeSong, SongsCard, Song, Loader}

@@ -1,15 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Song.css'
 import { dot, like, liked } from '../../assets'
-import SongsCard from '../SongsCard/SongsCard'
+import { SongsCard, Loader } from '../'
 import { useParams } from 'react-router-dom'
 import fetchWithQuoteConversion from '../../utils/fetchWithQuoteConversion';
 import { useDispatch, useSelector } from 'react-redux'
 import { addSong, removeSong } from '../../Features/songs/songsSlice'
 import convertSecondsToMinutesSeconds from '../../utils/durationCalculator'
 import { PlayerContext } from '../../Context/PlayerContext'
+import { useLoading } from '../../Context/loadingContext'
 
 function Song() {
+    const { isLoading, toggleLoading } = useLoading();
     const { id } = useParams()
     const [imgUrl, setImgUrl] = useState()
     const [songName, setSongName] = useState("")
@@ -23,9 +25,9 @@ function Song() {
     const [suggestedSong, setSuggestedSong] = useState([])
     const [duration, setDuration] = useState("")
     const dispatch = useDispatch()
-    const {play, playWithId} = useContext(PlayerContext)
+    const { play, playWithId } = useContext(PlayerContext)
     useEffect(() => {
-        fetchWithQuoteConversion(`https://saavn.dev/api/songs/${id}`)
+        fetchWithQuoteConversion(`https://saavn.dev/api/songs/${id}`, toggleLoading)
             .then((data) => {
                 if (data.success) {
                     data = data.data[0]
@@ -41,24 +43,24 @@ function Song() {
                     setLanguage(data.language)
                 }
             })
-        fetchWithQuoteConversion(`https://saavn.dev/api/songs/${id}/suggestions?limit=20`)
+        fetchWithQuoteConversion(`https://saavn.dev/api/songs/${id}/suggestions?limit=20`, toggleLoading)
             .then((data) => {
                 if (data.success) {
                     setSuggestedSong(data.data)
                 }
             })
-            playWithId(id)
-        }, [id])
-        const songImg = imgUrl ? imgUrl[2].url : ""
-        const songDuration = convertSecondsToMinutesSeconds(duration)
-        const likedSongs = useSelector(state => state.songs.LikedSongs);
-        const isSongLiked = likedSongs.some(song => song.id === id)
+        playWithId(id)
+    }, [id])
+    const songImg = imgUrl ? imgUrl[2].url : ""
+    const songDuration = convertSecondsToMinutesSeconds(duration)
+    const likedSongs = useSelector(state => state.songs.LikedSongs);
+    const isSongLiked = likedSongs.some(song => song.id === id)
     const handleToggleLike = (e) => {
         e.preventDefault();
         if (isSongLiked) {
             dispatch(removeSong(id));
         } else {
-            dispatch(addSong({id, songName, album, imgUrl, songDuration, artists}));
+            dispatch(addSong({ id, songName, album, imgUrl, songDuration, artists }));
         }
     };
     return (
@@ -75,7 +77,7 @@ function Song() {
                         <br />
                         <span>Album: {album}</span>
                     </div>
-                    
+
                     <div className="minor-details">
                         <span>{Year}</span>
                         <img src={dot} alt="" />
@@ -85,30 +87,33 @@ function Song() {
                     </div>
                     <div className="copyright">{copyright}</div>
                     <div className="buttons">
-                        <button onClick={()=>play()}>Play</button>
+                        <button onClick={() => play()}>Play</button>
                         <img src={isSongLiked ? liked : like} alt="like" onClick={handleToggleLike} />
 
                     </div>
                 </div>
             </div>
             <div className="songs">
-                <h1>You Might Like</h1>
                 {
-                    suggestedSong.map((song, index) => {
-                        const isLiked = likedSongs.some(likedSong => likedSong.id === song.id);
-                        return <SongsCard
-                            key={song.id}
-                            id={song.id}
-                            index={index}
-                            songName={song.name}
-                            duration={song.duration}
-                            artists={song.artists}
-                            album={song.album.name}
-                            imgUrl={song.image}
-                            isLiked={isLiked}
-                        />
-                    })
+                    isLoading ? <Loader /> : <><h1>You Might Like</h1>
+                        {
+                            suggestedSong.map((song, index) => {
+                                const isLiked = likedSongs.some(likedSong => likedSong.id === song.id);
+                                return <SongsCard
+                                    key={song.id}
+                                    id={song.id}
+                                    index={index}
+                                    songName={song.name}
+                                    duration={song.duration}
+                                    artists={song.artists}
+                                    album={song.album.name}
+                                    imgUrl={song.image}
+                                    isLiked={isLiked}
+                                />
+                            })
+                        }</>
                 }
+
             </div>
         </div>
     )

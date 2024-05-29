@@ -10,6 +10,7 @@ import previous_icon from './svgs/previous.svg'
 import volume_icon from './svgs/volume.svg'
 import loud_icon from './svgs/volumeLoud.svg'
 import muted_icon from './svgs/volumeMuted.svg'
+import low_vol from './svgs/lowVolumeIcon.svg'
 import pause_icon from './svgs/pause.svg'
 import like from './svgs/like.svg'
 import dot from './svgs/dot.svg'
@@ -19,4 +20,4 @@ import liked from './svgs/liked.svg'
 import likedSong from './images/liked-song.png'
 import headphone from './images/headphone.png'
 
-export { home, logo, search, library, plus, list, play_icon, next_icon, previous_icon, volume_icon, loud_icon, muted_icon, pause_icon, like, dot, liked, likedSong, forward, backward, headphone}
+export { home, logo, search, library, plus, list, play_icon, next_icon,low_vol, previous_icon, volume_icon, loud_icon, muted_icon, pause_icon, like, dot, liked, likedSong, forward, backward, headphone}

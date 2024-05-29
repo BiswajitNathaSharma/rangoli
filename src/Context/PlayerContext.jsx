@@ -1,9 +1,15 @@
 import { createContext, useEffect, useRef, useState } from "react";
 import fetchWithQuoteConversion from "../utils/fetchWithQuoteConversion";
+import { useDispatch } from "react-redux";
+import { addToHistory } from "../Features/songs/songsSlice";
+import { useLoading } from "./loadingContext";
 
 export const PlayerContext = createContext();
 
 const PlayerContextProvider = (props) => {
+
+    const { toggleLoading } = useLoading();
+    const dispatch = useDispatch()
 
     const audioRef = useRef();
     const seekBar = useRef()
@@ -13,6 +19,7 @@ const PlayerContextProvider = (props) => {
     const [trackSrc, setTrackSrc] = useState("")
     const [playStatus, setPlayStatus] = useState(false)
     const [dragging, setDragging] = useState(false);
+    const [volume, setVolume] = useState(0.5); // Initial volume at 50%
     const [time, setTime] = useState({
         currentTime: {
             second: "00",
@@ -23,6 +30,13 @@ const PlayerContextProvider = (props) => {
             minute: "00"
         }
     })
+
+    useEffect(() => {
+        if (audioRef.current) {
+        audioRef.current.volume = volume;
+        }
+    }, [volume]);
+
     function play() {
         audioRef.current.play()
         setPlayStatus(true)
@@ -77,7 +91,7 @@ const PlayerContextProvider = (props) => {
         if (track) {
             setTimeout(() => {
                 audioRef.current.ontimeupdate = () => {
-    
+
                     seekBar.current.style.width = (Math.floor(audioRef.current.currentTime / audioRef.current.duration * 100)) + "%"
                     setTime({
                         currentTime: {
@@ -90,16 +104,18 @@ const PlayerContextProvider = (props) => {
                         }
                     })
                 }
-                audioRef.current.play()
-                setPlayStatus(true)
-            }, 1000)
+                dispatch(addToHistory(track))
+
+                // audioRef.current.play()
+                // setPlayStatus(true)
+            }, 500)
         }
-        
-        
+
+
     }, [audioRef, track])
 
     const playWithId = async (id) => {
-        await fetchWithQuoteConversion(`https://saavn.dev/api/songs/${id}`)
+        await fetchWithQuoteConversion(`https://saavn.dev/api/songs/${id}`, toggleLoading)
             .then((data) => {
                 if (data.success) {
                     data = data.data[0]
@@ -107,9 +123,9 @@ const PlayerContextProvider = (props) => {
                     setTrackSrc(data.downloadUrl[4].url)
                     setPlayStatus(true)
                 }
-            })       
-
+            })
     }
+
     const contextValue = {
         audioRef,
         seekBar, seekBg,
@@ -118,9 +134,9 @@ const PlayerContextProvider = (props) => {
         time, setTime,
         play, pause,
         playWithId,
-        seekSong,
-        dragging, setDragging, handleMouseDown
-
+        seekSong, handleMouseDown,
+        dragging, setDragging,
+        volume, setVolume,
     };
 
     return (

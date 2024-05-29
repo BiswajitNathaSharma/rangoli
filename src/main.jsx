@@ -5,8 +5,9 @@ import './index.css'
 import { Provider } from 'react-redux'
 import { store } from './app/store.js'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import { Home, HomeSong, Main, Playlist, Song } from './components/index.js'
+import { HomeSong, Playlist, Song } from './components/index.js'
 import PlayerContextProvider from './Context/PlayerContext.jsx'
+import { LoadingProvider } from './Context/loadingContext.jsx'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -19,8 +20,10 @@ const router = createBrowserRouter(
 )
 ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
-        <PlayerContextProvider>
-        <RouterProvider router={router} />
-        </PlayerContextProvider>
+        <LoadingProvider>
+            <PlayerContextProvider>
+                <RouterProvider router={router} />
+            </PlayerContextProvider>
+        </LoadingProvider>
     </Provider>
 )
