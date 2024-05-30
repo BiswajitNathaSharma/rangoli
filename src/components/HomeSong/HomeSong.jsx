@@ -1,26 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import './HomeSong.css';
-import { HorizontalCard } from '../index';
+import { History, HorizontalCard } from '../index';
 import fetchWithQuoteConversion from '../../utils/fetchWithQuoteConversion';
 import { useLoading } from '../../Context/loadingContext';
+import { useSelector } from 'react-redux';
 
-const fetchData = async (query, setState) => {
-    const data = await fetchWithQuoteConversion(`https://saavn.dev/api/search/playlists?query=${query}&limit=100`, toggleLoading);
-    if (data.success) {
-        setState(data.data.results);
-        localStorage.setItem(query, JSON.stringify(data.data.results));
-    } else {
-        console.log(data.message);
-    }
-};
-
-const getDataFromLocalStorage = (key) => {
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : null;
-};
 
 function HomeSong() {
-    const { isLoading, toggleLoading } = useLoading();
+    const { toggleLoading } = useLoading();
+
+    const fetchData = async (query, setState) => {
+        const data = await fetchWithQuoteConversion(`https://saavn.dev/api/search/playlists?query=${query}&limit=100`, toggleLoading);
+        if (data.success) {
+            setState(data.data.results);
+            localStorage.setItem(query, JSON.stringify(data.data.results));
+        } else {
+            console.log(data.message);
+        }
+    };
+
+    const getDataFromLocalStorage = (key) => {
+        const data = localStorage.getItem(key);
+        return data ? JSON.parse(data) : null;
+    };
     const [romanticSong, setRomanticSong] = useState(getDataFromLocalStorage('romantic') || []);
     const [bhajan, setBhajan] = useState(getDataFromLocalStorage('spiritual') || []);
     const [party, setParty] = useState(getDataFromLocalStorage('party') || []);
@@ -43,6 +45,7 @@ function HomeSong() {
             fetchData('trending', setMostSearched);
         }
     }, [romanticSong, bhajan, party, mostSearched]);
+    const history = useSelector(State => State.songs.historySong)
     return (
         <>
             <nav>
@@ -51,6 +54,11 @@ function HomeSong() {
                 <button className="button">Podcast</button>
             </nav>
             <section>
+                {history.length > 1 ? <div className="music-section">
+                    <h2>Last Session</h2>
+                    <History />
+                </div> : null}
+
                 <div className="music-section">
                     <h2>Top Romantic</h2>
                     <HorizontalCard category={romanticSong} />

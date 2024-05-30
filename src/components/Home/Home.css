@@ -1,41 +1,49 @@
-.home{
+.home {
     background-color: #121212;
     border-radius: 10px;
     padding: .8vw 2vw;
     max-height: 28%;
 }
-.logo-withNavigate{
+
+.logo-withNavigate {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.logo-withNavigate > .navigation{
+
+.logo-withNavigate>.navigation {
     display: flex;
     gap: 20px;
     align-items: center;
     justify-content: center;
 }
-.navigation > *{
+
+.navigation>* {
     padding: 5px;
     background-color: #2A2A2A;
     border-radius: 50%;
     cursor: pointer;
 }
 
-.logo{
+.logo {
     font-size: 2vw;
     font-weight: 600;
     letter-spacing: 2px;
 }
-.child1, .child2{
+
+.child1,
+.child2 {
     display: flex;
     align-items: center;
     gap: 1.2vw;
     padding-top: 1.5vw;
-    span{
+
+    span {
         font-size: 1vw;
     }
 }
-.child1 img, .child2 img{
+
+.child1 img,
+.child2 img {
     filter: invert(1);
 }

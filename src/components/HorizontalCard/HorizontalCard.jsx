@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useState, useRef } from 'react';
-import { MusicCard } from '../index'
+import { MusicCard, PlaylistCard } from '../index'
 import './HorizontalCard.css'
 
-function HorizontalCard({category}) {
+function HorizontalCard({ category, history }) {
     const containerRef = useRef(null);
     const [isDragging, setIsDragging] = useState(false);
     const [startPosition, setStartPosition] = useState(0);
@@ -47,25 +47,37 @@ function HorizontalCard({category}) {
     }, []);
     return (
         <>
-        <div
+            <div
                 ref={containerRef}
                 className="horizontal-card"
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
                 onMouseUp={handleMouseUp}
                 onMouseLeave={handleMouseLeave}>
-                    {category.map((song) => {
-                return (
-                    
-                    <MusicCard
-                        key={song.id}
-                        id= {song.id}
-                        name={song.name}
-                        songCount={song.songCount}
-                        img={song.image[2].url} 
-                    />
-                );
-            })}
+                {history ?
+                    category.map((song) => {
+                        return (
+                            <PlaylistCard
+                                key={song.id}
+                                id={song.id}
+                                to={`song/${song.id}`}
+                                name={song.name}
+                                label={song.label}
+                                img={song.image[2].url}
+                            />
+                        );
+                    }) : category.map((song) => {
+                        return (
+
+                            <MusicCard
+                                key={song.id}
+                                id={song.id}
+                                name={song.name}
+                                songCount={song.songCount}
+                                img={song.image[2].url}
+                            />
+                        );
+                    })}
             </div>
         </>
     )

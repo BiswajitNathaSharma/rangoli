@@ -1,4 +1,4 @@
-.library{
+.library {
     background-color: #121212;
     border-radius: 10px;
     padding: .8vw 0vw .8vw 2vw;
@@ -9,35 +9,45 @@
     flex: 1;
     height: calc(100% - 28%);
 }
-.first-child > img, .third-child>img, .third-child img{
+
+.first-child>img,
+.third-child>img,
+.third-child img {
     filter: invert(1);
     cursor: pointer;
 }
-span{
+
+span {
     cursor: pointer;
 }
-.first-child{
+
+.first-child {
     display: flex;
     align-items: center;
     gap: 1.2vw;
-    span{
+
+    span {
         font-size: 1vw;
     }
 }
-.first-child > :nth-child(3) {
+
+.first-child> :nth-child(3) {
     position: absolute;
     right: 1vw;
 }
-.second-child{
+
+.second-child {
     display: flex;
     gap: .5vw;
 }
-.third-child{
+
+.third-child {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-right: 1vw;
-    div{
+
+    div {
         display: flex;
         align-items: center;
         gap: 5px;
@@ -45,13 +55,14 @@ span{
     }
 }
 
-.VerticalCard{
+.VerticalCard {
     overflow: auto;
     max-height: calc(100vh - 61vh);
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.VerticalCard>img{
+
+.VerticalCard>img {
     border-radius: 5px;
 }

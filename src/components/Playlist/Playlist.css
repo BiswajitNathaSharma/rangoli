@@ -1,57 +1,68 @@
-.playlist{
+.playlist {
     min-height: 100%;
     margin: 10px 15px;
     display: flex;
     flex-direction: column;
     gap: 2vw;
 }
-.song-count{
+
+.song-count {
     font-size: 1.3vw;
 }
-.details{
+
+.details {
     height: 250px;
     display: flex;
     align-items: center;
     gap: 4vw;
 }
-.details > img{
+
+.details>img {
     height: 250px;
     width: 300px;
     border-radius: 30px;
     object-fit: contain;
 }
-.details > .description >*{
+
+.details>.description>* {
     margin-top: 15px;
 }
-.buttons{
+
+.buttons {
     display: flex;
     align-items: center;
     gap: 50px;
 }
-.buttons > *{
+
+.buttons>* {
     cursor: pointer;
 }
-.buttons > button{
+
+.buttons>button {
     padding: 10px 20px;
     margin-right: 10px;
     min-width: 100px;
     font-size: 1.5vw;
     border-radius: 20px;
     border: none;
-    
+
 }
-.buttons> img{
+
+.buttons>img {
     width: 3vw;
 }
-.details .name{
+
+.details .name {
     font-size: 2.5vw;
     font-weight: 600;
 }
-.about{
+
+.about {
     font-size: 1.3vw;
     font-weight: 500;
 }
-.songs{
+
+.songs {
     display: flex;
     flex-direction: column;
     gap: 5px;

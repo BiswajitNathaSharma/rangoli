@@ -1,0 +1,28 @@
+.horizontal-card .PlaylistCard {
+    min-width: 280px;
+    max-height: 80px;
+    background-color: rgb(28, 28, 28);
+}
+
+.horizontal-card .PlaylistCard:hover {
+    background-color: #424141;
+}
+
+.history {
+    display: flex;
+    flex-direction: column;
+    /* background-color: gray; */
+}
+
+.history .horizontal-card {
+    /* margin-bottom: 30px; */
+    /* min-height: 200px; */
+    display: flex;
+    /* flex-wrap: unset; */
+    /* margin-bottom: 30px; */
+    flex-grow: 1;
+    /* gap: 10px; */
+    white-space: normal;
+    /* overflow-y: hidden; */
+    /* background-color: green; */
+}

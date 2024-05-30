@@ -59,7 +59,10 @@ body {
   user-select: none;
   -webkit-user-drag: none;
 }
-
+.no-selection{
+  user-select: none;
+  pointer-events: none;
+}
 img {
   -webkit-user-drag: none;
 

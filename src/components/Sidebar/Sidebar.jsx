@@ -1,12 +1,11 @@
 import React from 'react'
 import './Sidebar.css'
-import {Home, Library} from '../index'
-// import logo from '../../assets/logo.svg'
+import { Home, Library } from '../index'
 function Sidebar() {
     return (
         <div className='sidebar'>
-            <Home/>
-            <Library/>
+            <Home />
+            <Library />
         </div>
     )
 }

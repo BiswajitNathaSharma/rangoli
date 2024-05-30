@@ -1,7 +1,7 @@
 import React from 'react'
 import './Library.css'
 import { library, liked, list, plus, search } from '../../assets'
-import {PlaylistCard} from '../'
+import { PlaylistCard } from '../'
 import { useSelector } from 'react-redux';
 
 function Library() {
@@ -10,9 +10,9 @@ function Library() {
     return (
         <div className='library'>
             <div className="first-child">
-                    <img src={library} alt="Library" />
-                    <span>Your Library</span>
-                    <img src={plus} alt="add" />
+                <img src={library} alt="Library" />
+                <span>Your Library</span>
+                <img src={plus} alt="add" />
             </div>
 
             <div className="second-child">
@@ -29,17 +29,17 @@ function Library() {
             </div>
 
             <div className="VerticalCard">
-            <PlaylistCard songCount={likedSongs.length ||"0"} name="Your favourite Songs" to='/playlist/Liked'img={liked}/>
-            {
-                likedPlaylist.map((playlist) => {
-                    return <PlaylistCard 
-                    key={playlist.playlistId}
-                    songCount={playlist.songCount} 
-                    name={playlist.playlistName} 
-                    to={`/playlist/${playlist.playlistId}`}
-                    img={playlist.imgUrl}/>
-                })
-            }
+                <PlaylistCard songCount={likedSongs.length || "0"} name="Your favourite Songs" to='/playlist/Liked' img={liked} />
+                {
+                    likedPlaylist.map((playlist) => {
+                        return <PlaylistCard
+                            key={playlist.playlistId}
+                            songCount={playlist.songCount}
+                            name={playlist.playlistName}
+                            to={`/playlist/${playlist.playlistId}`}
+                            img={playlist.imgUrl} />
+                    })
+                }
             </div>
         </div>
     )

@@ -1,26 +1,31 @@
-.song{
+.song {
     display: flex;
     flex-direction: column;
     gap: 50px;
 }
-.songs > h1{
+
+.songs>h1 {
     font-size: 30px;
     font-weight: 900;
     padding: 20px 0px;
 }
-.song .song-discription{
+
+.song .song-discription {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
-.song-discription> .buttons{
+
+.song-discription>.buttons {
     margin-top: 10px;
 }
-.details{
+
+.details {
     display: flex;
     align-items: center;
 }
-.minor-details{
+
+.minor-details {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -28,10 +33,12 @@
     gap: 20px;
     max-width: max-content;
 }
-.minor-details>*::first-letter{
+
+.minor-details>*::first-letter {
     text-transform: uppercase;
 }
-.minor-details > img{
+
+.minor-details>img {
     filter: invert(1);
     background-color: var(--background);
     border-radius: 50%;

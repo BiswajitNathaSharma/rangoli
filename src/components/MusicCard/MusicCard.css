@@ -20,22 +20,26 @@
 .card .description {
     padding: 5px 5px;
 }
-.card .description > * {
-    word-wrap: break-word ;
+
+.card .description>* {
+    word-wrap: break-word;
     word-break: break-word;
     white-space: normal;
 }
+
 .card .description h5 {
     text-decoration: none;
     color: inherit;
     padding-top: 5px;
 }
-.card .description h4{
+
+.card .description h4 {
     max-width: 100%;
 }
 
 .card:hover {
     background-color: #424141;
+
     .play {
         opacity: 1;
         transform: scale(1);
@@ -60,7 +64,8 @@
     z-index: -1;
     transition: all 0.3s ease-in-out;
 }
-.play img{
+
+.play img {
     filter: invert(1);
     object-fit: contain;
 }

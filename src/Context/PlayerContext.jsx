@@ -1,13 +1,13 @@
 import { createContext, useEffect, useRef, useState } from "react";
 import fetchWithQuoteConversion from "../utils/fetchWithQuoteConversion";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToHistory } from "../Features/songs/songsSlice";
 import { useLoading } from "./loadingContext";
 
 export const PlayerContext = createContext();
 
 const PlayerContextProvider = (props) => {
-
+    const history = useSelector(State => State.songs.historySong)
     const { toggleLoading } = useLoading();
     const dispatch = useDispatch()
 
@@ -15,8 +15,8 @@ const PlayerContextProvider = (props) => {
     const seekBar = useRef()
     const seekBg = useRef()
 
-    const [track, setTrack] = useState()
-    const [trackSrc, setTrackSrc] = useState("")
+    const [track, setTrack] = useState(history[0])
+    const [trackSrc, setTrackSrc] = useState(track.downloadUrl[4].url)
     const [playStatus, setPlayStatus] = useState(false)
     const [dragging, setDragging] = useState(false);
     const [volume, setVolume] = useState(0.5); // Initial volume at 50%
@@ -33,13 +33,18 @@ const PlayerContextProvider = (props) => {
 
     useEffect(() => {
         if (audioRef.current) {
-        audioRef.current.volume = volume;
+            audioRef.current.volume = volume;
         }
     }, [volume]);
 
     function play() {
-        audioRef.current.play()
-        setPlayStatus(true)
+        // TODO:
+        // audioRef.current.play()
+        //     .then(() => {
+        //         setPlayStatus(true)
+        //         audioRef.current.play()
+        //     })
+        //     .catch(error => console.error('Error playing audio:', error));
     }
     function pause() {
         audioRef.current.pause()
@@ -112,8 +117,7 @@ const PlayerContextProvider = (props) => {
         }
 
 
-    }, [audioRef, track])
-
+    }, [audioRef, track, dispatch])
     const playWithId = async (id) => {
         await fetchWithQuoteConversion(`https://saavn.dev/api/songs/${id}`, toggleLoading)
             .then((data) => {
@@ -121,9 +125,13 @@ const PlayerContextProvider = (props) => {
                     data = data.data[0]
                     setTrack(data)
                     setTrackSrc(data.downloadUrl[4].url)
-                    setPlayStatus(true)
                 }
             })
+            .then(() => {
+                play();
+            })
+            .catch(error => console.error('Error fetching song data:', error));
+
     }
 
     const contextValue = {

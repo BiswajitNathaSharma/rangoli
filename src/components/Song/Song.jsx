@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Song.css'
-import { dot, like, liked } from '../../assets'
+import { dot, like, liked, duration_icon } from '../../assets'
 import { SongsCard, Loader } from '../'
 import { useParams } from 'react-router-dom'
 import fetchWithQuoteConversion from '../../utils/fetchWithQuoteConversion';
@@ -94,8 +94,26 @@ function Song() {
                 </div>
             </div>
             <div className="songs">
+
                 {
                     isLoading ? <Loader /> : <><h1>You Might Like</h1>
+                        <div className='song-card no-selection'>
+                            <div className="index-image-name">
+                                <span>#</span>
+                                <span>Image</span>
+                                <span>Name</span>
+
+                            </div>
+                            <div className="artist-album">
+                                <span>Artists</span>
+                                <span>Album</span>
+
+                            </div>
+                            <div className="like-duration-more">
+                                <span>Like</span>
+                                <span><img src={duration_icon} alt="" /></span>
+                            </div>
+                        </div>
                         {
                             suggestedSong.map((song, index) => {
                                 const isLiked = likedSongs.some(likedSong => likedSong.id === song.id);

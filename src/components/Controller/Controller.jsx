@@ -4,7 +4,7 @@ import { PlaylistCard } from '..'
 import { next_icon, play_icon, previous_icon, volume_icon, pause_icon, headphone, muted_icon, loud_icon, low_vol } from '../../assets'
 import { PlayerContext } from '../../Context/PlayerContext'
 function Controller() {
-    const { seekBar, seekBg, playStatus, setPlayStatus, time, play, pause, track, seekSong, handleMouseDown, volume, setVolume } = useContext(PlayerContext)
+    const { seekBar, seekBg, playStatus, time, play, pause, track, seekSong, handleMouseDown, volume, setVolume } = useContext(PlayerContext)
     const volumeRef = useRef()
     let currentVolumeIcon = volume_icon
 
@@ -16,8 +16,8 @@ function Controller() {
     useEffect(() => {
         // Set initial value
         volumeRef.current.style.setProperty('--value', `${volume * 100}%`);
-      }, [volume]);
-    
+    }, [volume]);
+
     if (volume == 0) currentVolumeIcon = muted_icon
     else if (volume < 0.3) currentVolumeIcon = low_vol
     else if (volume > 0.7) currentVolumeIcon = loud_icon
@@ -62,10 +62,11 @@ function Controller() {
             </div>
 
             <div className="volume" >
-                <img src={currentVolumeIcon} alt="" />
+                <img
+                    src={currentVolumeIcon} alt=""
+                    onClick={() => { volume == 0 ? setVolume(0.5) : setVolume(0) }}
+                    onDoubleClick={() => { setVolume(1) }} />
                 <input ref={volumeRef} type="range" min="0" max="1" step="0.01" value={volume} onChange={handleVolumeChange} />
-
-                {/* </div> */}
 
             </div>
 

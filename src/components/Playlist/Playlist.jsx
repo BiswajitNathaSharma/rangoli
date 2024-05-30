@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Playlist.css'
 import { Loader, SongsCard } from '../'
-import { like, liked, likedSong } from '../../assets'
+import { duration_icon, like, liked, likedSong } from '../../assets'
 import { useParams } from 'react-router-dom'
 import fetchWithQuoteConversion from '../../utils/fetchWithQuoteConversion'
 import { useDispatch, useSelector } from 'react-redux'
@@ -76,7 +76,23 @@ function Playlist() {
                 <div className="songs">
                     {
                         isLoading ? <Loader /> : <>
+                            <div className='song-card no-selection'>
+                                <div className="index-image-name">
+                                    <span>#</span>
+                                    <span>Image</span>
+                                    <span>Name</span>
 
+                                </div>
+                                <div className="artist-album">
+                                    <span>Artists</span>
+                                    <span>Album</span>
+
+                                </div>
+                                <div className="like-duration-more">
+                                    <span>Like</span>
+                                    <span><img src={duration_icon} alt="" /></span>
+                                </div>
+                            </div>
                             {!favourite ?
                                 playlistSongs.map((song, index) => {
                                     const isLiked = likedSongs.some(likedSongs => likedSongs.id === song.id);

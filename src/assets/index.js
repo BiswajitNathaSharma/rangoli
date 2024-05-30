@@ -17,7 +17,8 @@ import dot from './svgs/dot.svg'
 import forward from './svgs/forward.svg'
 import backward from './svgs/backward.svg'
 import liked from './svgs/liked.svg'
+import duration_icon from './svgs/duration.svg'
 import likedSong from './images/liked-song.png'
 import headphone from './images/headphone.png'
 
-export { home, logo, search, library, plus, list, play_icon, next_icon,low_vol, previous_icon, volume_icon, loud_icon, muted_icon, pause_icon, like, dot, liked, likedSong, forward, backward, headphone}
+export { home, logo, search, library, plus, list, play_icon, next_icon,low_vol, previous_icon, volume_icon, loud_icon, muted_icon, pause_icon, like, dot, liked, likedSong, forward, backward, headphone, duration_icon}

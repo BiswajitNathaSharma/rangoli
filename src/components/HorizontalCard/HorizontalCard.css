@@ -1,4 +1,4 @@
-.horizontal-card{
+.horizontal-card {
     margin-bottom: 30px;
     display: flex;
     flex-grow: 1;
@@ -6,6 +6,7 @@
     white-space: nowrap;
     overflow-y: hidden;
 }
+
 .horizontal-card::-webkit-scrollbar {
     display: none;
 }

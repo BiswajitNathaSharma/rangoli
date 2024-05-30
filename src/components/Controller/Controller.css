@@ -121,14 +121,14 @@ input[type="range"] {
     transition: opacity 0.2s;
     position: relative;
     /* overflow: hidden; */
-  }
-  
-  input[type="range"]:hover {
+}
+
+input[type="range"]:hover {
     opacity: 1;
-  }
-  
-  /* Style for the filled track */
-  input[type="range"]::before {
+}
+
+/* Style for the filled track */
+input[type="range"]::before {
     content: '';
     position: absolute;
     top: 0;
@@ -137,10 +137,10 @@ input[type="range"] {
     width: var(--value);
     background: #2A2A2A;
     border-radius: inherit;
-  }
-  
-  /* WebKit (Chrome, Safari) */
-  input[type="range"]::-webkit-slider-thumb {
+}
+
+/* WebKit (Chrome, Safari) */
+input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 16px;
@@ -150,5 +150,4 @@ input[type="range"] {
     border-radius: 50%;
     position: relative;
     z-index: 1;
-  }
-  
+}
