@@ -19,6 +19,7 @@ function Playlist() {
     const [playlistSongs, setPlaylistSongs] = useState([])
     const [favourite, setFavourite] = useState(false)
     const { playlistId } = useParams()
+    const {albumId} = useParams()
     const likedSongs = useSelector(state => state.songs.LikedSongs);
     const likedPlaylist = useSelector(state => state.playlists.likedPlaylist)
 
@@ -44,6 +45,18 @@ function Playlist() {
             setLikedSongPlaylist(likedSongs)
             setFavourite(true)
 
+        }else if (albumId) {
+            fetchWithQuoteConversion(`https://saavn.dev/api/albums?id=${albumId}`, toggleLoading)
+            .then((data) => {
+                if (data.success) {
+                    setPlaylistName(data.data.name)
+                    setImgUrl(data.data.image[2].url)
+                    setdescription(data.data.description)
+                    setSongCount(data.data.songCount)
+                    setPlaylistSongs(data.data.songs)
+                    setFavourite(false)
+                }
+            })
         } else fetchWithQuoteConversion(`https://saavn.dev/api/playlists?id=${playlistId}&limit=100`, toggleLoading)
             .then((data) => {
                 if (data.success) {
@@ -55,7 +68,7 @@ function Playlist() {
                     setFavourite(false)
                 }
             })
-    }, [playlistId])
+    }, [playlistId, albumId])
     return (
         <>
             <div className='playlist'>

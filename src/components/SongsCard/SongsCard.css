@@ -16,7 +16,7 @@
 .song-card>* {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
 }
 
 .song-card>:nth-child(1) {
@@ -41,7 +41,7 @@
 .index-image-name>img {
     height: 95%;
     width: 50px;
-    border-radius: 2px;
+    border-radius: 10px;
 }
 
 .like-duration-more>img {
@@ -50,4 +50,15 @@
 
 .artist-album>* {
     flex: 1;
+}
+.song-card.search-songs{
+    gap: 20px;
+}
+.song-card.search-songs>:nth-child(1) {
+    width: 50%;
+}
+
+.song-card.search-songs>:nth-child(2) {
+    width: 50%;
+    align-items: center;
 }

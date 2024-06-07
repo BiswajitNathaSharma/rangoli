@@ -39,12 +39,12 @@ const PlayerContextProvider = (props) => {
 
     function play() {
         // TODO:
-        // audioRef.current.play()
-        //     .then(() => {
-        //         setPlayStatus(true)
-        //         audioRef.current.play()
-        //     })
-        //     .catch(error => console.error('Error playing audio:', error));
+        audioRef.current.play()
+            .then(() => {
+                setPlayStatus(true)
+                audioRef.current.play()
+            })
+            .catch(error => console.error('Error playing audio:', error));
     }
     function pause() {
         audioRef.current.pause()

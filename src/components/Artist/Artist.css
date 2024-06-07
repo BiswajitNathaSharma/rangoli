@@ -1,0 +1,16 @@
+.artist-card{
+    height: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    margin: 0px 10px;
+    user-select: none;
+}
+.artist-card>img{
+    object-fit: cover;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}

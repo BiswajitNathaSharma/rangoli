@@ -10,8 +10,7 @@ function Controller() {
 
     const handleVolumeChange = (e) => {
         setVolume(e.target.value);
-        volumeRef.current.style.setProperty('--value', `${value * 100}%`);
-
+        volumeRef.current.style.setProperty('--value', `${volume * 100}%`);
     };
     useEffect(() => {
         // Set initial value

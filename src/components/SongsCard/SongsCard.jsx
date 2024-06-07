@@ -7,17 +7,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import convertSecondsToMinutesSeconds from '../../utils/durationCalculator';
 import artistsName from '../../utils/artistString';
 
-function SongsCard({ index, songName, imgUrl, album, duration, artists, id, isLiked, isFavourite }) {
+function SongsCard({ index, songName, imgUrl, album, duration, artists, id, isLiked, search }) {
 
     let songImgUrl = imgUrl[1].url
-    let trtuncatedArtistName = artistsName(artists).length > 25 ? artistsName(artists).slice(0, 25) + '...' : artistsName(artists);
+    let trtuncatedArtistName = artists ? artistsName(artists).length > 25 ? artistsName(artists).slice(0, 25) + '...' : artistsName(artists) : artists;
 
     let truncatedName = songName.length > 30 ? songName.slice(0, 30) + '...' : songName;
     let trtuncatedAlbum = album.length > 25 ? album.slice(0, 25) + '...' : album;
-    let songDuration = convertSecondsToMinutesSeconds(duration)
+    let songDuration = duration ? convertSecondsToMinutesSeconds(duration) : ""
 
-    // const history = useSelector((state)=>state)
-    const likedSongs = useSelector(state => state.songs.LikedSongs);
 
     const dispatch = useDispatch()
     const handleToggleLike = (e) => {
@@ -29,6 +27,21 @@ function SongsCard({ index, songName, imgUrl, album, duration, artists, id, isLi
         }
     };
     return (
+        <>{
+            search ? <Link to={`/song/${id}`} className='no-decoration'>
+            <div className='song-card search-songs'>
+                <div className="index-image-name">
+                    <img src={songImgUrl} alt={songName} />
+                    <span>{ truncatedName}</span>
+
+                </div>
+                <div className="artist-album">
+                    <span>{album}</span>
+
+                </div>
+            </div>
+        </Link>
+        :
         <Link to={`/song/${id}`} className='no-decoration'>
             <div className='song-card'>
                 <div className="index-image-name">
@@ -48,6 +61,7 @@ function SongsCard({ index, songName, imgUrl, album, duration, artists, id, isLi
                 </div>
             </div>
         </Link>
+        }</>
     )
 }
 

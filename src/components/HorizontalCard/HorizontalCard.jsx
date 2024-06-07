@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useState, useRef } from 'react';
-import { MusicCard, PlaylistCard } from '../index'
+import { Artist, MusicCard, PlaylistCard } from '../index'
 import './HorizontalCard.css'
 
-function HorizontalCard({ category, history }) {
+function HorizontalCard({ category, history, artist }) {
     const containerRef = useRef(null);
     const [isDragging, setIsDragging] = useState(false);
     const [startPosition, setStartPosition] = useState(0);
@@ -45,7 +45,19 @@ function HorizontalCard({ category, history }) {
             }
         };
     }, []);
-    return (
+    if (artist) {
+        return <div ref={containerRef}
+        className="horizontal-card"
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}>
+            <Artist/>
+            <Artist/>
+            <Artist/>
+        </div>
+    }
+    else return (
         <>
             <div
                 ref={containerRef}
@@ -68,13 +80,14 @@ function HorizontalCard({ category, history }) {
                         );
                     }) : category.map((song) => {
                         return (
-
-                            <MusicCard
+                        <MusicCard
                                 key={song.id}
                                 id={song.id}
-                                name={song.name}
+                                name={song.name || song.title}
                                 songCount={song.songCount}
+                                songLanguage = {song.language}
                                 img={song.image[2].url}
+                                type = {song.type}
                             />
                         );
                     })}

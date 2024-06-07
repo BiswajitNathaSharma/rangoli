@@ -12,5 +12,6 @@ import SongsCard from "./SongsCard/SongsCard";
 import Song from "./Song/Song.jsx";
 import Loader from "./Loader/Loader.jsx";
 import History from "./History/History.jsx";
-
-export{Sidebar, Main, Home, Library, Controller, MusicCard, HorizontalCard, PlaylistCard, Playlist, HomeSong, SongsCard, Song, Loader, History}
+import Search from "./Search/Search.jsx";
+import Artist from "./Artist/Artist.jsx";
+export{Sidebar, Main, Home, Library, Controller, MusicCard, HorizontalCard, PlaylistCard, Playlist, HomeSong, SongsCard, Song, Loader, History, Search, Artist}

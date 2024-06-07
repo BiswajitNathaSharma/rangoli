@@ -1,0 +1,63 @@
+.search {
+    min-height: 100%;
+    min-width: 100%;
+    /* background-color: blue; */
+}
+.search>*:nth-child(1){
+    margin-bottom: 20px;
+}
+.search>*:not(:nth-child(1)) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 5px;
+}
+
+.topResult-songs {
+    display: flex;
+    /* background-color: purple; */
+    gap: 7px;
+
+
+}
+
+.topResult {
+    max-height: min-content;
+    background-color: #22222286;
+    flex: 0.7;
+    border-radius: 10px;
+    /* background-color: pink; */
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.topResult 
+
+.search-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.search-details>:nth-child(1) {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.search-details>:nth-child(2),
+.search-details>:nth-child(3) {
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+
+.topResult>img {
+    width: 150px;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+.resultSong {
+    flex: 1;
+    border-radius: 10px;
+}

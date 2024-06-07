@@ -24,6 +24,7 @@ function HomeSong() {
         return data ? JSON.parse(data) : null;
     };
     const [romanticSong, setRomanticSong] = useState(getDataFromLocalStorage('romantic') || []);
+    const [topChart, settopChart] = useState(getDataFromLocalStorage('top 50') || [])
     const [bhajan, setBhajan] = useState(getDataFromLocalStorage('spiritual') || []);
     const [party, setParty] = useState(getDataFromLocalStorage('party') || []);
     const [mostSearched, setMostSearched] = useState(getDataFromLocalStorage('trending') || []);
@@ -32,7 +33,9 @@ function HomeSong() {
         if (romanticSong.length === 0) {
             fetchData('romantic', setRomanticSong);
         }
-
+        if(topChart.length === 0){
+            fetchData('top 50', settopChart);
+        }
         if (bhajan.length === 0) {
             fetchData('spiritual', setBhajan);
         }
@@ -59,6 +62,10 @@ function HomeSong() {
                     <History />
                 </div> : null}
 
+                <div className="music-section">
+                    <h2>Top Charts</h2>
+                    <HorizontalCard category={topChart} />
+                </div>
                 <div className="music-section">
                     <h2>Top Romantic</h2>
                     <HorizontalCard category={romanticSong} />

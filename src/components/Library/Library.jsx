@@ -31,9 +31,9 @@ function Library() {
             <div className="VerticalCard">
                 <PlaylistCard songCount={likedSongs.length || "0"} name="Your favourite Songs" to='/playlist/Liked' img={liked} />
                 {
-                    likedPlaylist.map((playlist) => {
+                    likedPlaylist.map((playlist, index) => {
                         return <PlaylistCard
-                            key={playlist.playlistId}
+                            key={playlist.playlistId || index}
                             songCount={playlist.songCount}
                             name={playlist.playlistName}
                             to={`/playlist/${playlist.playlistId}`}
