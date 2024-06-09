@@ -32,10 +32,7 @@ function Playlist() {
 
     const { isLoading, toggleLoading } = useLoading();
 
-    // console.log("album",isAlbumLiked)
-    // console.log("playlist",isPlaylistLiked)
     const handleToggleLike = (e) => {
-        console.log(isAlbumLiked)
         e.preventDefault();
         if (albumId) {
             if (isAlbumLiked) {

@@ -8,6 +8,21 @@ function Library() {
     const likedSongs = useSelector(state => state.songs.LikedSongs);
     const likedPlaylist = useSelector(state => state.playlists.likedPlaylist)
     const likedAlbum = useSelector(state => state.albums.likedAlbum)
+    const combinedList = [
+        ...likedPlaylist.map((playlist, index) => ({
+            ...playlist,
+            type: 'playlist',
+            id: playlist.playlistId || index,
+            to: `/playlist/${playlist.playlistId}`
+        })),
+        ...likedAlbum.map((album, index) => ({
+            ...album,
+            type: 'album',
+            id: album.albumId || index,
+            to: `/album/${album.albumId}`
+        }))
+    ];
+    combinedList.sort((a, b) => new Date(a.likedAt) - new Date(b.likedAt));
     return (
         <div className='library'>
             <div className="first-child">
@@ -31,26 +46,15 @@ function Library() {
 
             <div className="VerticalCard">
                 <PlaylistCard songCount={likedSongs.length || "0"} name="Your favourite Songs" to='/playlist/Liked' img={liked} />
-                {
-                    likedPlaylist.map((playlist, index) => {
-                        return <PlaylistCard
-                            key={playlist.playlistId || index}
-                            songCount={playlist.songCount}
-                            name={playlist.playlistName}
-                            to={`/playlist/${playlist.playlistId}`}
-                            img={playlist.imgUrl} />
-                    })
-                }
-                {
-                    likedAlbum.map((album, index) => {
-                        return <PlaylistCard
-                            key={album.albumId || index}
-                            songCount={album.songCount}
-                            name={album.playlistName}
-                            to={`/albums/${album.albumId}`}
-                            img={album.imgUrl} />
-                    })
-                }
+                {combinedList.map((item, index) => (
+            <PlaylistCard
+                key={item.id}
+                songCount={item.songCount}
+                name={item.playlistName}
+                to={item.to}
+                img={item.imgUrl}
+            />
+        ))}
             </div>
         </div>
     )

@@ -11,7 +11,7 @@ export const playlistSlice=createSlice({
         addPlaylist: (state, action) => {
             const playlistExists = state.likedPlaylist.some(playlist => playlist.playlistId === action.payload.playlistId);
             if (!playlistExists) {
-                state.likedPlaylist.push(action.payload);
+                state.likedPlaylist.push({...action.payload, likedAt: new Date().toISOString()});
             }
         },
         removePlaylist: (state, action) => {

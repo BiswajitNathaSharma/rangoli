@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    likedAlbum: []
+    likedAlbum: [
+        
+    ]
 }
 
 export const albumSlice=createSlice({
@@ -11,7 +13,7 @@ export const albumSlice=createSlice({
         addAlbum: (state, action) => {
             const albumExists = state.likedAlbum.some(album => album.albumId === action.payload.albumId);
             if (!albumExists) {
-                state.likedAlbum.push(action.payload);
+                state.likedAlbum.push({...action.payload, likedAt: new Date().toISOString()});
             }
         },
         removeAlbum: (state, action) => {
