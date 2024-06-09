@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import songsReducer from '../Features/songs/songsSlice'
 import playlistReducer from '../Features/Playlists/playlistSlice'
+import albumReducer from '../Features/Albums/albumSlice'
 const saveToLocalStorage = (state) => {
     try {
         const serializedState = JSON.stringify(state);
@@ -25,7 +26,8 @@ const loadFromLocalStorage = () => {
 export const store = configureStore({
     reducer: {
         songs: songsReducer,
-        playlists: playlistReducer
+        playlists: playlistReducer,
+        albums: albumReducer,
     },
     preloadedState: loadFromLocalStorage(),
 });

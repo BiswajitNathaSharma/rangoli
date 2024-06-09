@@ -7,6 +7,7 @@ import fetchWithQuoteConversion from '../../utils/fetchWithQuoteConversion'
 import { useDispatch, useSelector } from 'react-redux'
 import { addPlaylist, removePlaylist } from '../../Features/Playlists/playlistSlice'
 import { useLoading } from '../../Context/loadingContext';
+import { addAlbum, removeAlbum } from '../../Features/Albums/albumSlice'
 
 
 function Playlist() {
@@ -18,22 +19,37 @@ function Playlist() {
     const [likedSongPlaylist, setLikedSongPlaylist] = useState([])
     const [playlistSongs, setPlaylistSongs] = useState([])
     const [favourite, setFavourite] = useState(false)
+    const [isFavourite, setIsFavourite] = useState(false)
     const { playlistId } = useParams()
     const {albumId} = useParams()
     const likedSongs = useSelector(state => state.songs.LikedSongs);
     const likedPlaylist = useSelector(state => state.playlists.likedPlaylist)
+    const likedAlbum = useSelector(state => state.albums.likedAlbum)
 
     const dispatch = useDispatch()
     const isPlaylistLiked = likedPlaylist.some(Playlist => Playlist.playlistId === playlistId)
+    const isAlbumLiked = likedAlbum.some(Album => Album.albumId === albumId) 
 
     const { isLoading, toggleLoading } = useLoading();
 
+    // console.log("album",isAlbumLiked)
+    // console.log("playlist",isPlaylistLiked)
     const handleToggleLike = (e) => {
+        console.log(isAlbumLiked)
         e.preventDefault();
-        if (isPlaylistLiked) {
-            dispatch(removePlaylist(playlistId));
-        } else {
-            dispatch(addPlaylist({ playlistId, playlistName, songCount, imgUrl }));
+        if (albumId) {
+            if (isAlbumLiked) {
+                dispatch(removeAlbum(albumId));
+            } else {
+                dispatch(addAlbum({ albumId, playlistName, songCount, imgUrl }));
+            }
+        }
+        if(playlistId) {
+            if (isPlaylistLiked) {
+                dispatch(removePlaylist(playlistId));
+            } else {
+                dispatch(addPlaylist({ playlistId, playlistName, songCount, imgUrl }));
+            }
         }
     };
     useEffect(() => {
@@ -82,7 +98,7 @@ function Playlist() {
                         <div className="song-count">Total songs: {songCount}</div>
                         <div className="buttons">
                             <button>Play</button>
-                            <img src={isPlaylistLiked || favourite ? liked : like} alt="" onClick={handleToggleLike} />
+                            <img src={isPlaylistLiked || isAlbumLiked || favourite ? liked : like} alt="" onClick={handleToggleLike} />
                         </div>
                     </div>
                 </div>
