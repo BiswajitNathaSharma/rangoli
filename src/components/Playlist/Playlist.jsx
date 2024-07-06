@@ -19,7 +19,6 @@ function Playlist() {
     const [likedSongPlaylist, setLikedSongPlaylist] = useState([])
     const [playlistSongs, setPlaylistSongs] = useState([])
     const [favourite, setFavourite] = useState(false)
-    const [isFavourite, setIsFavourite] = useState(false)
     const { playlistId } = useParams()
     const {albumId} = useParams()
     const likedSongs = useSelector(state => state.songs.LikedSongs);
@@ -95,7 +94,7 @@ function Playlist() {
                         <div className="song-count">Total songs: {songCount}</div>
                         <div className="buttons">
                             <button>Play</button>
-                            <img src={isPlaylistLiked || isAlbumLiked || favourite ? liked : like} alt="" onClick={handleToggleLike} />
+                            <img src={isPlaylistLiked || isAlbumLiked || favourite ? liked : like} alt="" onClick={!favourite ? handleToggleLike : null} />
                         </div>
                     </div>
                 </div>

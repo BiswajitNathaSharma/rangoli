@@ -36,10 +36,15 @@ function Search() {
                 }
             })
     }, [query])
+    function handleTopQuery(topQuery) {
+        if (topQuery.type == "song") {
+            
+        }
+    }
     return (
         <div className='search'>
             <div className="topResult-songs">
-                {topQuery ? <div className="topResult">
+                {topQuery ? <div className="topResult" onClick={handleTopQuery}>
                     <img src={topQuery.image[2].url || ""} alt="" />
                     <div className="search-details">
                         <div>Title: {topQuery.title}</div>
