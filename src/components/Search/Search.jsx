@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import "./Search.css"
 import { Artist, HorizontalCard, MusicCard, SongsCard } from '../'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import fetchWithQuoteConversion from '../../utils/fetchWithQuoteConversion';
 import { useLoading } from '../../Context/loadingContext';
-function Search() {
-    const { toggleLoading } = useLoading();
+import { PlayerContext } from '../../Context/PlayerContext';
 
+function Search() {
+    const navigate = useNavigate();
+    const { toggleLoading } = useLoading();
+    const { play, playWithId } = useContext(PlayerContext)
     const likedSongs = useSelector(state => state.songs.LikedSongs);
     const { query } = useParams()
     const [topQuery, setTopQuery] = useState()
     const [songResult, setSongResult] = useState()
     const [playlistResult, setPlaylistResult] = useState()
     const [albumResult, setAlbumResult] = useState()
+
     const searchUrl = `https://saavn.dev/api/search?query=${query}`
     useEffect(() => {
         fetchWithQuoteConversion(searchUrl, toggleLoading)
@@ -37,14 +41,23 @@ function Search() {
             })
     }, [query])
     function handleTopQuery(topQuery) {
+        console.log(topQuery)
         if (topQuery.type == "song") {
-            
+            navigate(`/song/${topQuery.id}`);
+            playWithId(topQuery.id)
+        }
+        if(topQuery.type == "album") {
+            navigate(`/album/${topQuery.id}`);
+        }
+        if(topQuery.type == "playlist") {
+            navigate(`/playlist/${topQuery.id}`);
         }
     }
     return (
         <div className='search'>
             <div className="topResult-songs">
-                {topQuery ? <div className="topResult" onClick={handleTopQuery}>
+                {topQuery ? <div className="topResult" onClick={()=>handleTopQuery(topQuery)}>
+
                     <img src={topQuery.image[2].url || ""} alt="" />
                     <div className="search-details">
                         <div>Title: {topQuery.title}</div>
