@@ -48,8 +48,8 @@
     width: 2.2vw;
 }
 
-.artist-album>* {
-    flex: 1;
+.artist-album > img{
+    width: 2.2vw;
 }
 .song-card.search-songs{
     gap: 20px;

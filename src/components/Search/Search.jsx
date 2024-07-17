@@ -68,6 +68,7 @@ function Search() {
 
                 <div className="resultSong">
                     {songResult ? songResult.map((song, index) => {
+                        const isLiked = likedSongs.some(likedSong => likedSong.id === song.id);
                         return <SongsCard
                             key={song.id}
                             id={song.id}
@@ -78,6 +79,7 @@ function Search() {
                             artists={song.artists}
                             imgUrl={song.image}
                             search={true}
+                            isLiked={isLiked}
                         />
                     }) : null}
                 </div>

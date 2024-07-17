@@ -18,6 +18,7 @@ function SongsCard({ index, songName, imgUrl, album, duration, artists, id, isLi
 
 
     const dispatch = useDispatch()
+    
     const handleToggleLike = (e) => {
         e.preventDefault();
         if (isLiked) {
@@ -26,6 +27,7 @@ function SongsCard({ index, songName, imgUrl, album, duration, artists, id, isLi
             dispatch(addSong({ id, songName, album, imgUrl, duration, artists }));
         }
     };
+    
     return (
         <>{
             search ? <Link to={`/song/${id}`} className='no-decoration'>
@@ -33,10 +35,10 @@ function SongsCard({ index, songName, imgUrl, album, duration, artists, id, isLi
                 <div className="index-image-name">
                     <img src={songImgUrl} alt={songName} />
                     <span>{ truncatedName}</span>
-
                 </div>
                 <div className="artist-album">
                     <span>{album}</span>
+                    <img src={isLiked ? liked : like} alt="" onClick={handleToggleLike} />
 
                 </div>
             </div>

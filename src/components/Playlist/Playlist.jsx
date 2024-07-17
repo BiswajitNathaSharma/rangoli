@@ -81,6 +81,10 @@ function Playlist() {
                 }
             })
     }, [playlistId, albumId])
+    const handlePlayButton = (e)=>{
+        e.preventDefault()
+        
+    }
     return (
         <>
             <div className='playlist'>
@@ -93,7 +97,7 @@ function Playlist() {
                         <div className="about">{description}</div>
                         <div className="song-count">Total songs: {songCount}</div>
                         <div className="buttons">
-                            <button>Play</button>
+                            <button onClick={handlePlayButton}>Play</button>
                             <img src={isPlaylistLiked || isAlbumLiked || favourite ? liked : like} alt="" onClick={!favourite ? handleToggleLike : null} />
                         </div>
                     </div>

@@ -26,7 +26,7 @@
     background-color: #22222286;
     flex: 0.7;
     border-radius: 10px;
-    /* background-color: pink; */
+    cursor: pointer;
     padding: 10px;
     display: flex;
     align-items: center;
